@@ -8,7 +8,7 @@
 		<version>2.2.6.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>kapy.</groupId>
+	<groupId>kapy</groupId>
 	<artifactId>Kysely</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Kysely</name>
