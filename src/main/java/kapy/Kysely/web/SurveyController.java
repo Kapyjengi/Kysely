@@ -1,4 +1,4 @@
-package web;
+package kapy.Kysely.web;
 
 
 import java.util.List;
