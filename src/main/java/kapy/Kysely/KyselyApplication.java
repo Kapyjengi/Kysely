@@ -24,11 +24,14 @@ public class KyselyApplication {
 	public CommandLineRunner surveyDemo(QuestionRepository questionRepository, SurveyRepository surveyRepository) {
 		return (args) -> {
 			log.info("save surveys and questions");
-			questionRepository.save(new Question("kysymys1"));
-			questionRepository.save(new Question("kysymys2"));
+
+			Survey survey1 = new Survey("kyselyn nimi 1", "kyselyn kuvaus 1");
+			Survey survey2 = new Survey("kyselyn nimi 2", "kyselyn kuvaus 2");
+			surveyRepository.save(survey1);
+			surveyRepository.save(survey2);
 			
-			surveyRepository.save(new Survey("kyselyn nimi 1", "kyselyn kuvaus 1"));
-			surveyRepository.save(new Survey("kyselyn nimi 2", "kyselyn kuvaus 2"));
+			questionRepository.save(new Question("kysymys1", survey1));
+			questionRepository.save(new Question("kysymys2", survey2));
 			
 			log.info("fetch all questions");
 			for (Question question : questionRepository.findAll()) {
