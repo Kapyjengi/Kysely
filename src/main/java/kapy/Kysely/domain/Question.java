@@ -5,6 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -16,7 +20,20 @@ public class Question {
 	
 	
 	private String questionText;
+	
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "surveyid")
+    private Survey survey;
 
+
+	public Survey getSurvey() {
+		return survey;
+	}
+
+	public void setSurvey(Survey survey) {
+		this.survey = survey;
+	}
 
 	public Question(Long questionId, String questionText) {
 		super();

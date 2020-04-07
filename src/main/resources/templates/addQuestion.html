@@ -10,6 +10,7 @@
 	
 	<form action="#" th:action="@{/addquestion}" th:object= ${question} method="post">
 	<p>Question text: <input type="text" th:field="${question.questionText}" /></p>
+	
 	<label for="surveylist">Survey</label>
 			 <select id="surveylist" th:field="*{survey}" class="form-control">
        			<option th:each="survey: ${surveys}" th:value="${survey.surveyId}"
@@ -18,6 +19,5 @@
 	<input type="submit" value="Submit" /> <input type="reset" value="Reset" />
 	</form>
 	
-
 </body>
 </html>

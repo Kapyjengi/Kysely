@@ -41,6 +41,7 @@ public class SurveyController {
 	@RequestMapping(value = "/addsurvey", method = RequestMethod.POST)
 	public String saveSurvey(@ModelAttribute Survey survey) {
 		surveyRepository.save(survey);
+		System.out.println(survey.getSurveyName()); // log survey name
 		return "redirect:/addquestion";
 	}
 
