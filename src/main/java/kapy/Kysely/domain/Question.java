@@ -23,7 +23,7 @@ public class Question {
 	
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "surveyid")
+    @JoinColumn(name = "surveyId")
     private Survey survey;
 
 
@@ -44,6 +44,13 @@ public class Question {
 	public Question(String questionText) {
 		super();
 		this.questionText = questionText;
+	}
+	
+	// default constructor
+	public Question(String questionText, Survey survey) {
+		super();
+		this.questionText = questionText;
+		this.survey = survey;
 	}
 
 
