@@ -41,7 +41,7 @@ public class SurveyController {
 	@RequestMapping(value = "/addsurvey", method = RequestMethod.POST)
 	public String saveSurvey(@ModelAttribute Survey survey) {
 		surveyRepository.save(survey);
-		return "redirect:/addquestions";
+		return "redirect:/addquestion";
 	}
 
 	// Create new question, send to template along with list of surveys. GET
@@ -56,7 +56,7 @@ public class SurveyController {
 	@RequestMapping(value = "/addquestion", method = RequestMethod.POST)
 	public String saveQuestion(@ModelAttribute Question question) {
 		questionRepository.save(question);
-		return "redirect:/addquestions";
+		return "redirect:/addquestion";
 	}
 
 	//Restful haetaan kysely id-numeron mukaan
