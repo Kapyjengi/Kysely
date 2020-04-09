@@ -61,9 +61,9 @@ public class SurveyController {
 	}
 
 	//Restful haetaan kysely id-numeron mukaan
-	@RequestMapping(value = "/surveys/{id}", method = RequestMethod.GET)
-	public @ResponseBody Optional<Survey> findSurveyRest(@PathVariable("surveyid") Long surveyid){
-		return surveyRepository.findById(surveyid);
+	@RequestMapping(value = "/surveys/{surveyId}", method = RequestMethod.GET)
+	public @ResponseBody Optional<Survey> findSurveyRest(@PathVariable("surveyId") Long surveyId){
+		return surveyRepository.findById(surveyId);
 	}
 	//Restful haetaan kaikkien kyselyiden haku
 	@RequestMapping(value = "/surveys", method = RequestMethod.GET)
