@@ -56,12 +56,13 @@ public class SurveyController {
 		
 		
 		Optional<Survey> survey = surveyRepository.findById(surveyId);
+		// link the new Question to the correct Survey
 		question.setSurvey(survey.get());
-		System.out.println(survey.get().getQuestions());
-		System.out.println(question.getSurvey());
-		System.out.println(question.getSurvey().getSurveyId());
 		
+		
+		// questions as list to display on page
 		model.addAttribute("questionlist", survey.get().getQuestions());
+		
 		model.addAttribute("survey", survey);
 		model.addAttribute("question", question);
 		model.addAttribute("surveysname", survey.get().getSurveyName());
