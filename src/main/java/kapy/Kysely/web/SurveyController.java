@@ -10,6 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -69,6 +71,18 @@ public class SurveyController {
 	@RequestMapping(value = "/surveys", method = RequestMethod.GET)
 	public @ResponseBody List<Survey>surveyListRest(){
 		return (List<Survey>)surveyRepository.findAll();
+	}
+	//REST-metodi kyselyn lisäämiseen
+	@PostMapping("/surveys")
+	public @ResponseBody Survey addNewSurvey(@RequestBody Survey survey) {
+		surveyRepository.save(survey);
+		return survey;
+	}
+	
+	//REST homepage
+	@RequestMapping(value = "/resthome", method = RequestMethod.GET)
+	public String restHome() {
+		return "resthome";
 	}
 
 }
