@@ -62,6 +62,7 @@ public class SurveyController {
 		model.addAttribute("questionlist", survey.get().getQuestions());
 		model.addAttribute("survey", survey);
 		model.addAttribute("question", question);
+		model.addAttribute("surveysname", survey.get().getSurveyName());
 		return "addQuestion";
 	}
 	
