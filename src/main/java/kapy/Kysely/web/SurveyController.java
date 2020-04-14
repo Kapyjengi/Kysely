@@ -44,7 +44,6 @@ public class SurveyController {
 	public String saveSurvey(@ModelAttribute Survey survey) {
 		surveyRepository.save(survey);
 		Long surveyId = survey.getSurveyId(); // Save ID of new survey as path variable for redirect
-		System.out.println(survey.getSurveyName()); // log survey name
 		return "redirect:surveys/"+ surveyId + "/addquestion"; // direct to create questions for survey
 	}
 
@@ -73,12 +72,9 @@ public class SurveyController {
 	// Direct to add another question.
 	@RequestMapping(value = "/savequestion", method = RequestMethod.POST)
 	public String saveQuestion(@ModelAttribute Question question) {
-		System.out.println(question);
 		questionRepository.save(question);
-		System.out.println(question.getSurvey().getSurveyId());
 		Long surveyId = question.getSurvey().getSurveyId(); // get surveyID of question to get the right survey to add questions to
 		return "redirect:surveys/"+surveyId+"/addquestion"; // direct back to question template 
-		// return "redirect:/addsurvey";
 	}
 
 	//Restful haetaan kysely id-numeron mukaan
