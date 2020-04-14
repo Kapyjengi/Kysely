@@ -43,23 +43,40 @@ public class SurveyController {
 	@RequestMapping(value = "/addsurvey", method = RequestMethod.POST)
 	public String saveSurvey(@ModelAttribute Survey survey) {
 		surveyRepository.save(survey);
+		Long surveyId = survey.getSurveyId(); // Save ID of new survey as path variable for redirect
 		System.out.println(survey.getSurveyName()); // log survey name
-		return "redirect:/addquestion";
+		return "redirect:surveys/"+ surveyId + "/addquestion"; // direct to create questions for survey
 	}
 
-	// Create new question, send to template along with list of surveys. GET
-	@RequestMapping(value = "/addquestion", method = RequestMethod.GET)
-	public String getQuestion(Model model) {
-		model.addAttribute("question", new Question());
-		model.addAttribute("surveys", surveyRepository.findAll());
+	// Create new question, send to template along with current survey. GET
+	// and current questions as list
+	@RequestMapping(value = "surveys/{surveyId}/addquestion", method = RequestMethod.GET)
+	public String getQuestion(@PathVariable("surveyId") Long surveyId, Model model) {
+		Question question = new Question(); 
+		
+		
+		Optional<Survey> survey = surveyRepository.findById(surveyId);
+		question.setSurvey(survey.get());
+		System.out.println(survey.get().getQuestions());
+		System.out.println(question.getSurvey());
+		System.out.println(question.getSurvey().getSurveyId());
+		
+		model.addAttribute("questionlist", survey.get().getQuestions());
+		model.addAttribute("survey", survey);
+		model.addAttribute("question", question);
 		return "addQuestion";
 	}
+	
 	// Receive question from template, save it. POST
 	// Direct to add another question.
-	@RequestMapping(value = "/addquestion", method = RequestMethod.POST)
+	@RequestMapping(value = "/savequestion", method = RequestMethod.POST)
 	public String saveQuestion(@ModelAttribute Question question) {
+		System.out.println(question);
 		questionRepository.save(question);
-		return "redirect:/addquestion";
+		System.out.println(question.getSurvey().getSurveyId());
+		Long surveyId = question.getSurvey().getSurveyId(); // get surveyID of question to get the right survey to add questions to
+		return "redirect:surveys/"+surveyId+"/addquestion"; // direct back to question template 
+		// return "redirect:/addsurvey";
 	}
 
 	//Restful haetaan kysely id-numeron mukaan
