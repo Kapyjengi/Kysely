@@ -29,7 +29,6 @@ public class KyselyApplication {
 			Survey survey2 = new Survey("kyselyn nimi 2", "kyselyn kuvaus 2");
 			surveyRepository.save(survey1);
 			surveyRepository.save(survey2);
-			
 			questionRepository.save(new Question("kysymys1", survey1));
 			questionRepository.save(new Question("kysymys2", survey2));
 			

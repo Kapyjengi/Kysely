@@ -2,22 +2,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Add questions to survey</title>
+<link type="text/css" rel="stylesheet" href="../css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
+<!-- @{/deletebook/{id}(id=${book.id})} 
+/surveys/{surveyId}(surveyId=${survey.surveyId}.toString())/addquestion/save 
+-->
 	<h1>Add questions to your survey</h1>
 	
-	<form action="#" th:action="@{/addquestion}" th:object= ${question} method="post">
-	<p>Question text: <input type="text" th:field="${question.questionText}" /></p>
-	
-	<label for="surveylist">Survey</label>
-			 <select id="surveylist" th:field="*{survey}" class="form-control">
-       			<option th:each="survey: ${surveys}" th:value="${survey.surveyId}"
-       			 th:text="${survey.surveyName}"></option>
-    		</select>
+	<form action="#" th:action="@{/savequestion}" 
+	th:object= ${question} method="post">
+	<p>Question text: <textarea type="text" th:field="${question.questionText}" /></p>
+	<input type ="hidden" th:field="*{survey}" class="form-control"/>
 	<input type="submit" value="Submit" /> <input type="reset" value="Reset" />
 	</form>
+	
+	<p th:each="question : ${questionlist}" th:text="${question.questionText}"></p>
 	
 </body>
 </html>
