@@ -24,21 +24,34 @@ public class KyselyApplication {
 	public CommandLineRunner surveyDemo(QuestionRepository questionRepository, SurveyRepository surveyRepository) {
 		return (args) -> {
 			log.info("save surveys and questions");
-
-			Survey survey1 = new Survey("kyselyn nimi 1", "kyselyn kuvaus 1");
-			Survey survey2 = new Survey("kyselyn nimi 2", "kyselyn kuvaus 2");
+		
+			log.info("test survey1");	
+			Survey survey1 = new Survey("SWD4TN022-3007", "Ohjelmistoprojekti 1 opintojakson kurssipalautekysely, kevät 2020.");
 			surveyRepository.save(survey1);
-			surveyRepository.save(survey2);
-			questionRepository.save(new Question("kysymys1", survey1));
-			questionRepository.save(new Question("kysymys2", survey2));
+			questionRepository.save(new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey1));
+			questionRepository.save(new Question("Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?", survey1));
+			questionRepository.save(new Question("Kerro kokemuksesti ryhmätyöskentelystä.", survey1));
+			questionRepository.save(new Question("Mitä olisit voinut opintojaksolla tehdä toisin?", survey1));
+			questionRepository.save(new Question("Mitä hyvää opintojaksossa oli?", survey1));
+			questionRepository.save(new Question("Miten kehittäisit opintojaksoa?", survey1));			
 			
-			log.info("fetch all questions");
-			for (Question question : questionRepository.findAll()) {
-				log.info(question.toString());
-			}
+			log.info("test survey2");
+			Survey survey2 = new Survey("SWD4TN020-3006", "Palvelinohjelmointi opintojakson kurssipalautekysely, kevät 2020");
+			surveyRepository.save(survey2);
+			questionRepository.save(new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey2));
+			questionRepository.save(new Question("Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?", survey2));
+			questionRepository.save(new Question("Kerro kokemuksesti opintojakson ryhmätyöskentelystä.", survey2));
+			questionRepository.save(new Question("Mitä olisit voinut opintojaksolla tehdä toisin?", survey2));
+			questionRepository.save(new Question("Mitä hyvää opintojaksossa oli?", survey2));
+			questionRepository.save(new Question("Miten kehittäisit opintojaksoa?", survey2));			
+			
 			log.info("fetch all surveys");
 			for (Survey survey : surveyRepository.findAll()) {
 				log.info(survey.toString());
+			}
+			log.info("fetch all questions");
+			for (Question question : questionRepository.findAll()) {
+				log.info(question.toString());
 			}
 		};
 	}
