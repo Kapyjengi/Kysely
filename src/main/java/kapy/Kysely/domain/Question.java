@@ -1,5 +1,8 @@
 package kapy.Kysely.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,8 +10,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -18,13 +24,26 @@ public class Question {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long questionId;
 	
-	
 	private String questionText;
 	
     @ManyToOne
-    @JsonIgnore
+    @JsonManagedReference
     @JoinColumn(name = "surveyId")
     private Survey survey;
+    
+
+
+	@JsonBackReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	private List<Answer> answers;
+
+    public List<Answer> getAnswers() {
+		return answers;
+	}
+
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
 
 
 	public Survey getSurvey() {

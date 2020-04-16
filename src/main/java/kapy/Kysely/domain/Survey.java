@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 
 @Entity
 public class Survey {
@@ -20,6 +22,7 @@ public class Survey {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long surveyId;
 	
+	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
 	private List<Question> questions;
 
@@ -78,6 +81,8 @@ public class Survey {
 		this.surveyName = surveyName;
 		this.surveyDescription = surveyDescription;
 	}
+	
+	
 	
 
 }
