@@ -31,6 +31,25 @@ public class SurveyController {
 	@Autowired
 	QuestionRepository questionRepository;
 
+	@RequestMapping(value = "/index", method = RequestMethod.GET)
+	public String Index(Model model) {	
+			model.addAttribute("surveys", surveyRepository.findAll());
+		return "index";
+	}
+	
+	@RequestMapping(value = "/questionlist", method = RequestMethod.GET)
+	public String ShowQuestionList(Model model, Question questions,@RequestParam(name= "survey",required=false) Long surveyId) {
+		
+		if (surveyId !=null) {
+		model.addAttribute("qId",questions.getSurvey().getSurveyId());				
+		}else {
+			model.addAttribute("qId",1);
+	}
+		questionRepository.findAll();
+		model.addAttribute("questions", questionRepository.findAll());
+		
+		return "questionlist";
+	}
 
 	// Create new survey, send to template. GET
 	@RequestMapping(value = "/addsurvey", method = RequestMethod.GET)

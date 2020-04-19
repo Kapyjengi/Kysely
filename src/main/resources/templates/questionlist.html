@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<h1>INDEX <a href="/addsurvey" >Add Survey</a></h1>
+	
+	
+	
+	<input type="hidden" th:value= "${qId + 'SurveyId'}"></input>
+	
+	<table>
+		<tr th:each="question: ${questions}"> 
+				
+			<td th:if= "${question.survey.surveyId} == ${qId}" th:text= "${question.questionText}"></td><td><input th:if= "${question.survey.surveyId} == ${qId}" type="text" th:name="questionText"/></td>
+			
+		</tr>
+	</table>
+	
+	
+
+</body>
+</html>
