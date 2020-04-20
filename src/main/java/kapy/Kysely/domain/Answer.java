@@ -54,7 +54,11 @@ public class Answer {
 		this.question = question;
 		this.answerText = answerText;
 	}
-
+	
+	public Answer(Answer answerText) {
+		super();
+	}
+	
 	public Answer() {
 		super();
 	}
