@@ -58,7 +58,7 @@ public class Answer {
 	public Answer(Answer answerText) {
 		super();
 	}
-	
+		
 	public Answer() {
 		super();
 	}

@@ -32,48 +32,42 @@ public class KyselyApplication {
 			surveyRepository.save(survey1);
 
 			log.info("test questions for survey1");
-			Question question1 = new Question("Mitä?", survey1);
+			Question question1 = new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey1);
 			questionRepository.save(question1);
 
-			Question question2 = new Question("Miksi?", survey1);
+			Question question2 = new Question("Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?", survey1);
 			questionRepository.save(question2);
 
-			Question question3 = new Question("Milloin?", survey1);
+			Question question3 = new Question("Kerro kokemuksesti ryhmätyöskentelystä.", survey1);
 			questionRepository.save(question3);
 
-			Question question4 = new Question("Kuka?", survey1);
+			Question question4 = new Question("Mitä olisit voinut opintojaksolla tehdä toisin?", survey1);
 			questionRepository.save(question4);
 
-			Question question5 = new Question("Kuinka paljon?", survey1);
+			Question question5 = new Question("Mitä hyvää opintojaksossa oli?", survey1);
 			questionRepository.save(question5);
 
-			Question question6 = new Question("Hä?", survey1);
+			Question question6 = new Question("Miten kehittäisit opintojaksoa?", survey1);
 			questionRepository.save(question6);
 
-			Question question7 = new Question("Tä?", survey1);
-			questionRepository.save(question7);
-
 			log.info("test answers for survey1");
-			Answer answer1 = new Answer(question1, "Sitä.");
+			Answer answer1 = new Answer(question1, "Asia1, asia2 ja asia3. Juu.");
 			answerRepository.save(answer1);
 
-			Answer answer2 = new Answer(question2, "Siksi.");
+			Answer answer2 = new Answer(question2, "Asiat aa, bee ja cee.");
 			answerRepository.save(answer2);
 
-			Answer answer3 = new Answer(question3, "Silloin.");
+			Answer answer3 = new Answer(question3, "Vastaus.");
 			answerRepository.save(answer3);
 
-			Answer answer4 = new Answer(question4, "Se.");
+			Answer answer4 = new Answer(question4, "Asian, toisen ja kolmannen.");
 			answerRepository.save(answer4);
 
-			Answer answer5 = new Answer(question5, "Paljon.");
+			Answer answer5 = new Answer(question5, "Tämä, tuo ja se.");
 			answerRepository.save(answer5);
 
-			Answer answer6 = new Answer(question6, "Jep.");
+			Answer answer6 = new Answer(question6, "Sillain, tälläin ja tollain.");
 			answerRepository.save(answer6);
-
-			Answer answer7 = new Answer(question7, "Juu.");
-			answerRepository.save(answer7);
 
 			//			Vanha kysymystenlistaustapa			
 			//			Poistetaan, jos tää uus tapa toimii hyvin
@@ -90,54 +84,42 @@ public class KyselyApplication {
 			surveyRepository.save(survey2);
 
 			log.info("test questions for survey1");
-			Question question8 = new Question("Onko?", survey2);
+			Question question8 = new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey2);
 			questionRepository.save(question8);
 
-			Question question9 = new Question("Oliko?", survey2);
+			Question question9 = new Question("Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?", survey2);
 			questionRepository.save(question9);
 
-			Question question10 = new Question("Ostitko?", survey2);
+			Question question10 = new Question("Kerro kokemuksesti ryhmätyöskentelystä.", survey2);
 			questionRepository.save(question10);
 
-			Question question11 = new Question("Olliko?", survey2);
+			Question question11 = new Question("Mitä olisit voinut opintojaksolla tehdä toisin?", survey2);
 			questionRepository.save(question11);
 
-			Question question12 = new Question("Ollakko?", survey2);
+			Question question12 = new Question("Mitä hyvää opintojaksossa oli?", survey2);
 			questionRepository.save(question12);
 
-			Question question13 = new Question("Omenako?", survey2);
+			Question question13 = new Question("Miten kehittäisit opintojaksoa?", survey2);
 			questionRepository.save(question13);
 
-			Question question14 = new Question("Onttoko?", survey2);
-			questionRepository.save(question14);
-
-			Question question15 = new Question("Ottoko?", survey2);
-			questionRepository.save(question15);
-
 			log.info("test answers for survey1");
-			Answer answer8 = new Answer(question8, "On.");
+			Answer answer8 = new Answer(question8, "Tää, toi ja se.");
 			answerRepository.save(answer8);
 
-			Answer answer9 = new Answer(question9, "Oli.");
+			Answer answer9 = new Answer(question9, "Asia1 ja asia2.");
 			answerRepository.save(answer9);
 
-			Answer answer10 = new Answer(question10, "Ostin.");
+			Answer answer10 = new Answer(question10, "Jotainjotainjotain.");
 			answerRepository.save(answer10);
 
-			Answer answer11 = new Answer(question11, "Olli.");
+			Answer answer11 = new Answer(question11, "Tän ja ton.");
 			answerRepository.save(answer11);
 
-			Answer answer12 = new Answer(question12, "Omena.");
+			Answer answer12 = new Answer(question12, "Joku ja joku.");
 			answerRepository.save(answer12);
 
-			Answer answer13 = new Answer(question13, "Ontto.");
+			Answer answer13 = new Answer(question13, "Tälläin ja tollain.");
 			answerRepository.save(answer13);
-
-			Answer answer14 = new Answer(question14, "Juu.");
-			answerRepository.save(answer14);
-
-			Answer answer15 = new Answer(question15, "Juu.");
-			answerRepository.save(answer15);
 
 			//			Vanha kysymystenlistaustapa			
 			//			Poistetaan, jos tää uus tapa toimii hyvin
