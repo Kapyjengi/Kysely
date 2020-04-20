@@ -1,7 +1,6 @@
 package kapy.Kysely.web;
 
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kapy.Kysely.domain.Question;
 import kapy.Kysely.domain.QuestionRepository;
@@ -38,7 +35,7 @@ public class SurveyController {
 	}
 	
 	@RequestMapping(value = "/questionlist", method = RequestMethod.GET)
-	public String ShowQuestionList(Model model, Question questions,@RequestParam(name= "survey",required=false) Long surveyId) {
+	public String ShowQuestionList(Model model, Question questions, @RequestParam(name= "survey",required=false) Long surveyId) {
 		
 		if (surveyId !=null) {
 		model.addAttribute("qId",questions.getSurvey().getSurveyId());				
