@@ -1,5 +1,6 @@
 package kapy.Kysely.web;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kapy.Kysely.domain.Question;
 import kapy.Kysely.domain.QuestionRepository;
 import kapy.Kysely.domain.Survey;
 import kapy.Kysely.domain.SurveyRepository;
@@ -50,6 +52,24 @@ public class RestController {
 	@RequestMapping(value = "/resthome", method = RequestMethod.GET)
 	public String restHome() {
 		return "resthome";
+	}
+	
+	//surveys/' + props.surveyId + '/questions
+	// RESTful get all questions in survey
+	@RequestMapping(value = "/surveys/{surveyId}/question", method = RequestMethod.GET)
+	public @ResponseBody List<Question>getQuestionsOfSurveyEKA(@PathVariable("surveyId") Long surveyId){
+		return (List<Question>)surveyRepository.findById(surveyId).get().getQuestions();
+	}
+	
+	// RESTful get question texts only
+	@RequestMapping(value = "/surveys/{surveyId}/questions", method = RequestMethod.GET)
+	public @ResponseBody List<String>getQuestionsOfSurvey(@PathVariable("surveyId") Long surveyId){
+		List<Question> questions = surveyRepository.findById(surveyId).get().getQuestions();
+		List<String> questionTexts = new ArrayList<String>();
+		for(int i=0; i<questions.size(); i++){
+	        questionTexts.add(questions.get(i).getQuestionText());
+	    }  
+		return questionTexts;
 	}
 
 }
