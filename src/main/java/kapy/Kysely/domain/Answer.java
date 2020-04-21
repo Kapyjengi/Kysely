@@ -8,18 +8,19 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Answer {
-	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long answerId;
 	
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference
+    // @JsonManagedReference
     @JoinColumn(name = "questionId")
 	private Question question;
 	

@@ -27,13 +27,15 @@ public class Question {
 	private String questionText;
 	
     @ManyToOne
-    @JsonManagedReference
+    @JsonBackReference
+   //  @JsonManagedReference
     @JoinColumn(name = "surveyId")
     private Survey survey;
     
 
-
-	@JsonBackReference
+    // Managed reference = Näyttää vastaukset, kun listataan kysymykset
+	// @JsonBackReference
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
 

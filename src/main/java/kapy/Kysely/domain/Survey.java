@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
@@ -22,7 +24,8 @@ public class Survey {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long surveyId;
 	
-	@JsonBackReference
+	// @JsonBackReference
+	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
 	private List<Question> questions;
 

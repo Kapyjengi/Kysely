@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kapy.Kysely.domain.Answer;
+import kapy.Kysely.domain.AnswerRepository;
 import kapy.Kysely.domain.Question;
 import kapy.Kysely.domain.QuestionRepository;
 import kapy.Kysely.domain.Survey;
@@ -28,6 +30,9 @@ public class RestController {
 
 	@Autowired
 	QuestionRepository questionRepository;
+	
+	@Autowired
+	AnswerRepository answerRepository;
 	
 	//Restful haetaan kysely id-numeron mukaan
 	@RequestMapping(value = "/surveys/{surveyId}", method = RequestMethod.GET)
@@ -55,6 +60,30 @@ public class RestController {
 	}
 	
 	// RESTful service for adding an answer
+	// 
+	/*1. endpoint on /submitanswer
+	 * 2. Saadaan vastausolio JSONIna
+	 * 3. LIitetään vastausolio kysymysID:n perusteella kysymysolioon
+	 * 		Answer answer = new Answer();
+	 * answer.setAnswerText();
+		Question question = answer.getQuestion();
+		question.addAnswer(answer);
+	 */
+	
+	@PostMapping("/submitanswer")
+	public @ResponseBody Answer saveAnswer(@RequestBody Answer answer) {
+		answerRepository.save(answer);
+		return answer;
+	}
+	
+	//Restful kaikki vastaukset
+	@RequestMapping(value = "/answers", method = RequestMethod.GET)
+	public @ResponseBody List<Answer>giefAnswersRest(){
+		return (List<Answer>)answerRepository.findAll();
+	}
+	
+	
+	
 	
 	//surveys/' + props.surveyId + '/questions
 	// RESTful get all questions in survey
