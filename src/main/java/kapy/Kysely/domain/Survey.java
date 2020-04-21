@@ -24,7 +24,6 @@ public class Survey {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long surveyId;
 	
-	// @JsonBackReference
 	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
 	private List<Question> questions;

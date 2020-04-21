@@ -18,9 +18,9 @@ public class Answer {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long answerId;
 	
-    @ManyToOne
-    @JsonBackReference
-    // @JsonManagedReference
+	@ManyToOne
+    //@JsonBackReference
+    //@JsonManagedReference
     @JoinColumn(name = "questionId")
 	private Question question;
 	
