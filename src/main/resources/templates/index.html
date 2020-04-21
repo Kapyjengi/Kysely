@@ -12,12 +12,13 @@
 	
 	 <form action="#" th:action="@{/questionlist}" method=GET>
 		<select th:field="*{surveys}" th:name="survey">
-       		<option th:each="survey: ${surveys}" th:value="${survey.surveyId}" th:name="survey"
+       		<option th:each="survey: ${surveys}" th:value="${survey.surveyId}" th:selected="${survey.surveyId}" 
        		th:text="${survey.surveyName}" > </option>
        		
     	</select>
-     <input type=text name="survey" />
-    		<button type="submit" value="submit">Select</button>
+    	<input type = "text" name = "survey" value = "1"/>
+     <input type="submit" value="Push the button!"/>
+    	
     </form>
 	
 	

@@ -28,24 +28,43 @@ public class SurveyController {
 	@Autowired
 	QuestionRepository questionRepository;
 
+	@Autowired
+	AnswerRepository answerRepository;
+
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String Index(Model model) {	
-			model.addAttribute("surveys", surveyRepository.findAll());
+	public String Index(Model model) {
+		model.addAttribute("surveys", surveyRepository.findAll());
+
 		return "index";
 	}
-	
+
 	@RequestMapping(value = "/questionlist", method = RequestMethod.GET)
-	public String ShowQuestionList(Model model, Question questions, @RequestParam(name= "survey",required=false) Long surveyId) {
-		
-		if (surveyId !=null) {
-		model.addAttribute("qId",questions.getSurvey().getSurveyId());				
-		}else {
-			model.addAttribute("qId",1);
-	}
+	public String ShowQuestionList(Model model, Question questions,
+			@RequestParam(name = "survey", required = false) Long surveyId, Answer answer) {
+
+		if (surveyId != null) {
+			model.addAttribute("qId", questions.getSurvey().getSurveyId());
+		} else {
+			model.addAttribute("qId", 1);
+		}
 		questionRepository.findAll();
 		model.addAttribute("questions", questionRepository.findAll());
-		
+		//
+		System.out.println(questionRepository.count());
+
 		return "questionlist";
+	}
+
+	@RequestMapping(value = "/saveAnswer", method = RequestMethod.POST)
+	public String saveAnswer(Model model, Answer answer, Question question,
+			@RequestParam(name = "questionText", required = false) String text,
+			@RequestParam(name = "questionid", required = false) Long textid) {
+		// model.addAttribute("answers", new Answer());
+		System.out.println(question);
+		System.out.println(text);
+		System.out.println(textid);
+
+		return "redirect:questionlist";
 	}
 
 	// Create new survey, send to template. GET

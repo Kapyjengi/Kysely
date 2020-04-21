@@ -10,15 +10,21 @@
 	
 	
 	
-	<input type="hidden" th:value= "${qId + 'SurveyId'}"></input>
-	
+	<input type="hidden" th:value= "${qId}"></input>
+	<form  th:action="@{saveAnswer}" action="#" method="post">
 	<table>
+	
 		<tr th:each="question: ${questions}"> 
 				
 			<td th:if= "${question.survey.surveyId} == ${qId}" th:text= "${question.questionText}"></td><td><input th:if= "${question.survey.surveyId} == ${qId}" type="text" th:name="questionText"/></td>
+			<td th:if= "${question.survey.surveyId} == ${qId}" th:text= "${question.questionId}" th:field="*{question.questionId}" th:value="*{question.questionId}" name="questionid"></td>
 			
 		</tr>
+		
+	
 	</table>
+	<input type="submit" name=${question.questionId} value="Submit"/>
+	</form>
 	
 	
 
