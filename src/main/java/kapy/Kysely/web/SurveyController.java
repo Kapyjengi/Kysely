@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kapy.Kysely.domain.Answer;
+import kapy.Kysely.domain.AnswerRepository;
 import kapy.Kysely.domain.Question;
 import kapy.Kysely.domain.QuestionRepository;
 import kapy.Kysely.domain.Survey;
@@ -34,7 +36,6 @@ public class SurveyController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String Index(Model model) {
 		model.addAttribute("surveys", surveyRepository.findAll());
-
 		return "index";
 	}
 
@@ -53,18 +54,6 @@ public class SurveyController {
 		System.out.println(questionRepository.count());
 
 		return "questionlist";
-	}
-
-	@RequestMapping(value = "/saveAnswer", method = RequestMethod.POST)
-	public String saveAnswer(Model model, Answer answer, Question question,
-			@RequestParam(name = "questionText", required = false) String text,
-			@RequestParam(name = "questionid", required = false) Long textid) {
-		// model.addAttribute("answers", new Answer());
-		System.out.println(question);
-		System.out.println(text);
-		System.out.println(textid);
-
-		return "redirect:questionlist";
 	}
 
 	// Create new survey, send to template. GET
@@ -87,22 +76,22 @@ public class SurveyController {
 	@RequestMapping(value = "surveys/{surveyId}/addquestion", method = RequestMethod.GET)
 	public String getQuestion(@PathVariable("surveyId") Long surveyId, Model model) {
 		Question question = new Question(); 
-		
-		
+
+
 		Optional<Survey> survey = surveyRepository.findById(surveyId);
 		// link the new Question to the correct Survey
 		question.setSurvey(survey.get());
-		
-		
+
+
 		// questions as list to display on page
 		model.addAttribute("questionlist", survey.get().getQuestions());
-		
+
 		model.addAttribute("survey", survey);
 		model.addAttribute("question", question);
 		model.addAttribute("surveysname", survey.get().getSurveyName());
 		return "addQuestion";
 	}
-	
+
 	// Receive question from template, save it. POST
 	// Direct to add another question.
 	@RequestMapping(value = "/savequestion", method = RequestMethod.POST)

@@ -1,32 +1,35 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-	<h1>INDEX <a href="/addsurvey" >Add Survey</a></h1>
-	
-	
-	
-	<input type="hidden" th:value= "${qId}"></input>
-	<form  th:action="@{saveAnswer}" action="#" method="post">
-	<table>
-	
-		<tr th:each="question: ${questions}"> 
-				
-			<td th:if= "${question.survey.surveyId} == ${qId}" th:text= "${question.questionText}"></td><td><input th:if= "${question.survey.surveyId} == ${qId}" type="text" th:name="questionText"/></td>
-			<td th:if= "${question.survey.surveyId} == ${qId}" th:text= "${question.questionId}" th:field="*{question.questionId}" th:value="*{question.questionId}" name="questionid"></td>
-			
-		</tr>
-		
-	
-	</table>
-	<input type="submit" name=${question.questionId} value="Submit"/>
+	<h1>
+		INDEX <a href="/addsurvey">Add Survey</a>
+	</h1>
+	<input type="hidden" th:value="${qId}"></input>
+	<form th:action="@{/saveAnswer}" action="#" th:object=${answer}
+		method="post">
+		<table>
+			<tr th:each="question: ${questions}">
+				<td th:if="${question.survey.surveyId} == ${qId}"
+					th:text="${question.questionText}"></td>
+				<td><input th:if="${question.survey.surveyId} == ${qId}"
+					type="text" th:name="answer.answerText" /></td>
+				<td th:if="${question.survey.surveyId} == ${qId}"
+					th:text="${question.questionId}" th:field="${question.questionId}"
+					th:value="${question.questionId}" th:name="questionId"></td>
+			</tr>
+			<!--<div th:if="${#fields.hasErrors('answerText')}" th:errors="*{answer.answerText}">errors</div>-->
+		</table>
+		<input type="submit" value="Submit" />
 	</form>
-	
-	
+
 
 </body>
 </html>
