@@ -51,22 +51,22 @@ public class KyselyApplication {
 			questionRepository.save(question6);
 
 			log.info("test answers for survey1");
-			Answer answer1 = new Answer(question1, "Asia1, asia2 ja asia3. Juu.");
+			Answer answer1 = new Answer("Asia1, asia2 ja asia3. Juu.",question1 );
 			answerRepository.save(answer1);
 
-			Answer answer2 = new Answer(question2, "Asiat aa, bee ja cee.");
+			Answer answer2 = new Answer("Asiat aa, bee ja cee.",question2 );
 			answerRepository.save(answer2);
 
-			Answer answer3 = new Answer(question3, "Vastaus.");
+			Answer answer3 = new Answer("Vastaus.",question3);
 			answerRepository.save(answer3);
 
-			Answer answer4 = new Answer(question4, "Asian, toisen ja kolmannen.");
+			Answer answer4 = new Answer("Asian, toisen ja kolmannen.",question4);
 			answerRepository.save(answer4);
 
-			Answer answer5 = new Answer(question5, "Tämä, tuo ja se.");
+			Answer answer5 = new Answer("Tämä, tuo ja se.",question5);
 			answerRepository.save(answer5);
 
-			Answer answer6 = new Answer(question6, "Sillain, tälläin ja tollain.");
+			Answer answer6 = new Answer("Sillain, tälläin ja tollain.",question6);
 			answerRepository.save(answer6);
 
 			//			Vanha kysymystenlistaustapa			
@@ -83,7 +83,7 @@ public class KyselyApplication {
 			Survey survey2 = new Survey("SWD4TN020-3006", "Palvelinohjelmointi opintojakson kurssipalautekysely, kevät 2020");
 			surveyRepository.save(survey2);
 
-			log.info("test questions for survey1");
+			log.info("test questions for survey2");
 			Question question8 = new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey2);
 			questionRepository.save(question8);
 
@@ -103,22 +103,22 @@ public class KyselyApplication {
 			questionRepository.save(question13);
 
 			log.info("test answers for survey1");
-			Answer answer8 = new Answer(question8, "Tää, toi ja se.");
+			Answer answer8 = new Answer("Tää, toi ja se.",question8);
 			answerRepository.save(answer8);
 
-			Answer answer9 = new Answer(question9, "Asia1 ja asia2.");
+			Answer answer9 = new Answer("Asia1 ja asia2.",question9 );
 			answerRepository.save(answer9);
 
-			Answer answer10 = new Answer(question10, "Jotainjotainjotain.");
+			Answer answer10 = new Answer("Jotainjotainjotain.",question10);
 			answerRepository.save(answer10);
 
-			Answer answer11 = new Answer(question11, "Tän ja ton.");
+			Answer answer11 = new Answer("Tän ja ton.",question11);
 			answerRepository.save(answer11);
 
-			Answer answer12 = new Answer(question12, "Joku ja joku.");
+			Answer answer12 = new Answer("Joku ja joku.",question12);
 			answerRepository.save(answer12);
 
-			Answer answer13 = new Answer(question13, "Tälläin ja tollain.");
+			Answer answer13 = new Answer("Tälläin ja tollain.",question13);
 			answerRepository.save(answer13);
 
 			//			Vanha kysymystenlistaustapa			
