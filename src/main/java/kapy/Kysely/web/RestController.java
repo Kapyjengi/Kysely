@@ -87,13 +87,13 @@ public class RestController {
 	
 	//surveys/' + props.surveyId + '/questions
 	// RESTful get all questions in survey
-	@RequestMapping(value = "/surveys/{surveyId}/question", method = RequestMethod.GET)
+	@RequestMapping(value = "/surveys/{surveyId}/questions", method = RequestMethod.GET)
 	public @ResponseBody List<Question>getQuestionsOfSurveyEKA(@PathVariable("surveyId") Long surveyId){
 		return (List<Question>)surveyRepository.findById(surveyId).get().getQuestions();
 	}
 	
 	// RESTful get question texts only
-	@RequestMapping(value = "/surveys/{surveyId}/questions", method = RequestMethod.GET)
+	@RequestMapping(value = "/surveys/{surveyId}/questiontexts", method = RequestMethod.GET)
 	public @ResponseBody List<String>getQuestionsOfSurvey(@PathVariable("surveyId") Long surveyId){
 		List<Question> questions = surveyRepository.findById(surveyId).get().getQuestions();
 		List<String> questionTexts = new ArrayList<String>();
