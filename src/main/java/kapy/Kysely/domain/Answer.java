@@ -18,13 +18,15 @@ public class Answer {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long answerId;
 	
+    private String answerText;
+    
 	@ManyToOne
     //@JsonBackReference
     //@JsonManagedReference
     @JoinColumn(name = "questionId")
 	private Question question;
 	
-    private String answerText;
+
 
 	public Long getAnswerId() {
 		return answerId;
