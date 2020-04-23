@@ -54,6 +54,12 @@ public class Answer {
 		this.question = question;
 		this.answerText = answerText;
 	}
+	// other way around
+	public Answer(String answerText, Question question) {
+		super();
+		this.question = question;
+		this.answerText = answerText;
+	}
 	
 	public Answer(Answer answerText) {
 		super();
