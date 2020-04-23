@@ -49,7 +49,7 @@ public class Answer {
 	}
 
 	// default constructor without ID
-	public Answer(String answerText, Question question ) {
+	public Answer(Question question, String answerText) {
 		super();
 		this.question = question;
 		this.answerText = answerText;
