@@ -6,10 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotEmpty;
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Answer {
@@ -18,15 +14,15 @@ public class Answer {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long answerId;
 	
-    private String answerText;
-    
-	@ManyToOne
+	private String answerText;
+	
+    @ManyToOne
     //@JsonBackReference
     //@JsonManagedReference
     @JoinColumn(name = "questionId")
 	private Question question;
-	
-
+    	
+    
 
 	public Long getAnswerId() {
 		return answerId;
@@ -53,7 +49,7 @@ public class Answer {
 	}
 
 	// default constructor without ID
-	public Answer(Question question, String answerText) {
+	public Answer(String answerText, Question question ) {
 		super();
 		this.question = question;
 		this.answerText = answerText;
