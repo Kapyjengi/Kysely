@@ -27,6 +27,10 @@ public class KyselyApplication {
 		return (args) -> {
 			log.info("save surveys and questions");
 
+			////////////////////
+			// TESTIKYSELY 1 //
+			//////////////////
+
 			log.info("test survey1");
 			Survey survey1 = new Survey("SWD4TN022-3007", "Ohjelmistoprojekti 1 opintojakson kurssipalautekysely, kevät 2020.");
 			surveyRepository.save(survey1);
@@ -57,7 +61,7 @@ public class KyselyApplication {
 			Answer answer2 = new Answer("Asiat aa, bee ja cee.",question2 );
 			answerRepository.save(answer2);
 
-			Answer answer3 = new Answer("Vastaus.",question3);
+			Answer answer3 = new Answer("Ryhmätyöskentely toimi hyvin tuttujen opiskelelukaveiden kanssa.",question3);
 			answerRepository.save(answer3);
 
 			Answer answer4 = new Answer("Asian, toisen ja kolmannen.",question4);
@@ -69,16 +73,10 @@ public class KyselyApplication {
 			Answer answer6 = new Answer("Sillain, tälläin ja tollain.",question6);
 			answerRepository.save(answer6);
 
-			//			Vanha kysymystenlistaustapa			
-			//			Poistetaan, jos tää uus tapa toimii hyvin
-			//			questionRepository.save(new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey1));
-			//			questionRepository.save(new Question("Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?", survey1));
-			//			questionRepository.save(new Question("Kerro kokemuksesti ryhmätyöskentelystä.", survey1));
-			//			questionRepository.save(new Question("Mitä olisit voinut opintojaksolla tehdä toisin?", survey1));
-			//			questionRepository.save(new Question("Mitä hyvää opintojaksossa oli?", survey1));
-			//			questionRepository.save(new Question("Miten kehittäisit opintojaksoa?", survey1));
-			//			
-			
+			////////////////////
+			// TESTIKYSELY 2 //
+			//////////////////
+
 			log.info("test survey2");
 			Survey survey2 = new Survey("SWD4TN020-3006", "Palvelinohjelmointi opintojakson kurssipalautekysely, kevät 2020");
 			surveyRepository.save(survey2);
@@ -109,7 +107,7 @@ public class KyselyApplication {
 			Answer answer9 = new Answer("Asia1 ja asia2.",question9 );
 			answerRepository.save(answer9);
 
-			Answer answer10 = new Answer("Jotainjotainjotain.",question10);
+			Answer answer10 = new Answer("Kurssilla ei toteutettu ryhmätyötä.",question10);
 			answerRepository.save(answer10);
 
 			Answer answer11 = new Answer("Tän ja ton.",question11);
@@ -120,15 +118,6 @@ public class KyselyApplication {
 
 			Answer answer13 = new Answer("Tälläin ja tollain.",question13);
 			answerRepository.save(answer13);
-
-			//			Vanha kysymystenlistaustapa			
-			//			Poistetaan, jos tää uus tapa toimii hyvin
-			//			questionRepository.save(new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey2));
-			//			questionRepository.save(new Question("Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?", survey2));
-			//			questionRepository.save(new Question("Kerro kokemuksesti opintojakson ryhmätyöskentelystä.", survey2));
-			//			questionRepository.save(new Question("Mitä olisit voinut opintojaksolla tehdä toisin?", survey2));
-			//			questionRepository.save(new Question("Mitä hyvää opintojaksossa oli?", survey2));
-			//			questionRepository.save(new Question("Miten kehittäisit opintojaksoa?", survey2));
 
 			log.info("fetch all surveys");
 			for (Survey survey : surveyRepository.findAll()) {

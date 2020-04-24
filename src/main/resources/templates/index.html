@@ -1,29 +1,34 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 
-	<h1>INDEX <a href="/addsurvey" >Add Survey</a></h1>
-	
-	
-	
-	 <form action="#" th:action="@{/questionlist}" method=GET>
+	<h1>
+		INDEX <a href="/addsurvey">Add Survey</a>
+	</h1>
+
+
+
+	<form action="#" th:action="@{/questionlist}" method=GET>
 		<select th:field="*{surveys}" th:name="survey">
-       		<option th:each="survey: ${surveys}" th:value="${survey.surveyId}" th:selected="${survey.surveyId}" 
-       		th:text="${survey.surveyName}" > </option>
-       		
-    	</select>
-    	<input type = "text" name = "survey" value = "1"/>
-     <input type="submit" value="Push the button!"/>
-    	
-    </form>
-	
-	
-	
-	
+			<option th:each="survey: ${surveys}" th:value="${survey.surveyId}"
+				th:selected="${survey.surveyId}" th:text="${survey.surveyName}">
+			</option>
+
+		</select> <input type="text" name="survey" value="1" /> <input type="submit"
+			value="Push the button!" />
+
+	</form>
+
+
+
+
 
 </body>
 </html>

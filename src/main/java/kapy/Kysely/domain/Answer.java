@@ -9,20 +9,16 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Answer {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long answerId;
-	
+
 	private String answerText;
-	
-    @ManyToOne
-    //@JsonBackReference
-    //@JsonManagedReference
-    @JoinColumn(name = "questionId")
+
+	@ManyToOne
+	@JoinColumn(name = "questionId")
 	private Question question;
-    	
-    
 
 	public Long getAnswerId() {
 		return answerId;
@@ -54,17 +50,18 @@ public class Answer {
 		this.question = question;
 		this.answerText = answerText;
 	}
+
 	// other way around
 	public Answer(String answerText, Question question) {
 		super();
 		this.question = question;
 		this.answerText = answerText;
 	}
-	
+
 	public Answer(Answer answerText) {
 		super();
 	}
-		
+
 	public Answer() {
 		super();
 	}
@@ -73,7 +70,4 @@ public class Answer {
 	public String toString() {
 		return "Answer [answerId=" + answerId + ", question=" + question + ", answerText=" + answerText + "]";
 	}
-    
-    
-
 }
