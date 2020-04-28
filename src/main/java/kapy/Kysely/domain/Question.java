@@ -1,6 +1,8 @@
 package kapy.Kysely.domain;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -8,6 +10,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -33,6 +37,16 @@ public class Question {
 	@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
+	
+	
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "QuestionOption", 
+        joinColumns = { @JoinColumn(name = "questionId") }, 
+        inverseJoinColumns = { @JoinColumn(name = "optionId") }
+    )
+	
+    Set<Option> options = new HashSet<>();
 
 	public List<Answer> getAnswers() {
 		return answers;
