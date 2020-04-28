@@ -2,6 +2,6 @@ package kapy.Kysely.domain;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface OptionRepository extends CrudRepository<Answer, Long> {
+public interface OptionRepository extends CrudRepository<Option, Long> {
 
 }

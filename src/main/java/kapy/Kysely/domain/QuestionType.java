@@ -1,13 +1,19 @@
 package kapy.Kysely.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class QuestionType {
@@ -17,11 +23,18 @@ public class QuestionType {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long questionTypeId;
-	
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name = "questionId")
-	private Question question;
+
+	@JsonBackReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questionType")
+	private List<Question> questions;
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
 
 	public String getTypeName() {
 		return typeName;
@@ -39,17 +52,9 @@ public class QuestionType {
 		this.questionTypeId = questionId;
 	}
 
-	public Question getQuestion() {
-		return question;
-	}
-
-	public void setQuestion(Question question) {
-		this.question = question;
-	}
-
 	@Override
 	public String toString() {
-		return "QuestionType [typeName=" + typeName + ", questionId=" + questionTypeId + ", question=" + question + "]";
+		return "QuestionType [typeName=" + typeName + ", questionId=" + questionTypeId+"]";
 	}
 
 	public QuestionType() {

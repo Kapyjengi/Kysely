@@ -11,6 +11,8 @@ import kapy.Kysely.domain.Answer;
 import kapy.Kysely.domain.AnswerRepository;
 import kapy.Kysely.domain.Question;
 import kapy.Kysely.domain.QuestionRepository;
+import kapy.Kysely.domain.QuestionType;
+import kapy.Kysely.domain.QuestionTypeRepository;
 import kapy.Kysely.domain.Survey;
 import kapy.Kysely.domain.SurveyRepository;
 
@@ -23,9 +25,22 @@ public class KyselyApplication {
 	}
 	//testidatan luonti H2-testitietokantaan
 	@Bean
-	public CommandLineRunner surveyDemo(QuestionRepository questionRepository, SurveyRepository surveyRepository, AnswerRepository answerRepository) {
+	public CommandLineRunner surveyDemo(QuestionRepository questionRepository, SurveyRepository surveyRepository, 
+			AnswerRepository answerRepository, QuestionTypeRepository questionTypeRepository) {
 		return (args) -> {
 			log.info("save surveys and questions");
+			
+			///////////////////
+			// KYSELYTYYPIT ///
+			//////////////////
+			log.info("question types");
+			QuestionType type1 = new QuestionType("textField");
+			questionTypeRepository.save(type1);
+			QuestionType type2 = new QuestionType("radioButton");
+			questionTypeRepository.save(type2);
+			QuestionType type3 = new QuestionType("checkBox");
+			questionTypeRepository.save(type3);
+			
 
 			////////////////////
 			// TESTIKYSELY 1 //
@@ -36,22 +51,22 @@ public class KyselyApplication {
 			surveyRepository.save(survey1);
 
 			log.info("test questions for survey1");
-			Question question1 = new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey1);
+			Question question1 = new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey1, type1);
 			questionRepository.save(question1);
 
-			Question question2 = new Question("Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?", survey1);
+			Question question2 = new Question("Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?", survey1, type1);
 			questionRepository.save(question2);
 
-			Question question3 = new Question("Kerro kokemuksesti ryhmätyöskentelystä.", survey1);
+			Question question3 = new Question("Kerro kokemuksesti ryhmätyöskentelystä.", survey1, type1);
 			questionRepository.save(question3);
 
-			Question question4 = new Question("Mitä olisit voinut opintojaksolla tehdä toisin?", survey1);
+			Question question4 = new Question("Mitä olisit voinut opintojaksolla tehdä toisin?", survey1, type1);
 			questionRepository.save(question4);
 
-			Question question5 = new Question("Mitä hyvää opintojaksossa oli?", survey1);
+			Question question5 = new Question("Mitä hyvää opintojaksossa oli?", survey1, type1);
 			questionRepository.save(question5);
 
-			Question question6 = new Question("Miten kehittäisit opintojaksoa?", survey1);
+			Question question6 = new Question("Miten kehittäisit opintojaksoa?", survey1, type1);
 			questionRepository.save(question6);
 
 			log.info("test answers for survey1");
@@ -82,22 +97,22 @@ public class KyselyApplication {
 			surveyRepository.save(survey2);
 
 			log.info("test questions for survey2");
-			Question question8 = new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey2);
+			Question question8 = new Question("Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?", survey2, type1);
 			questionRepository.save(question8);
 
-			Question question9 = new Question("Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?", survey2);
+			Question question9 = new Question("Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?", survey2, type1);
 			questionRepository.save(question9);
 
-			Question question10 = new Question("Kerro kokemuksesti ryhmätyöskentelystä.", survey2);
+			Question question10 = new Question("Kerro kokemuksesti ryhmätyöskentelystä.", survey2, type1);
 			questionRepository.save(question10);
 
-			Question question11 = new Question("Mitä olisit voinut opintojaksolla tehdä toisin?", survey2);
+			Question question11 = new Question("Mitä olisit voinut opintojaksolla tehdä toisin?", survey2, type1);
 			questionRepository.save(question11);
 
-			Question question12 = new Question("Mitä hyvää opintojaksossa oli?", survey2);
+			Question question12 = new Question("Mitä hyvää opintojaksossa oli?", survey2, type1);
 			questionRepository.save(question12);
 
-			Question question13 = new Question("Miten kehittäisit opintojaksoa?", survey2);
+			Question question13 = new Question("Miten kehittäisit opintojaksoa?", survey2, type1);
 			questionRepository.save(question13);
 
 			log.info("test answers for survey1");

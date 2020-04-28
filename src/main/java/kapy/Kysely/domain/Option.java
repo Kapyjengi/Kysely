@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Option {
 	
@@ -18,6 +20,7 @@ public class Option {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long optionId;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "options")
     private Set<Question> questions = new HashSet<>();
 
