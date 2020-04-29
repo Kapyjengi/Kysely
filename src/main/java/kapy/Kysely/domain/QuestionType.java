@@ -44,11 +44,11 @@ public class QuestionType {
 		this.typeName = typeName;
 	}
 
-	public Long getQuestionId() {
+	public Long getQuestionTypeId() {
 		return questionTypeId;
 	}
 
-	public void setQuestionId(Long questionId) {
+	public void setQuestionTypeId(Long questionId) {
 		this.questionTypeId = questionId;
 	}
 

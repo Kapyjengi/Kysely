@@ -35,7 +35,7 @@ public class Question {
 
 	
 	@ManyToOne
-	@JsonManagedReference
+	@JsonBackReference
 	@JoinColumn(name = "questionTypeId")
 	private QuestionType questionType;
 	
@@ -48,7 +48,7 @@ public class Question {
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "QuestionOption", 
-        joinColumns = { @JoinColumn(name = "questionId") }, 
+        joinColumns = { @JoinColumn(name = "questionTypeId") }, 
         inverseJoinColumns = { @JoinColumn(name = "optionId") }
     )
     Set<Option> options = new HashSet<>();
