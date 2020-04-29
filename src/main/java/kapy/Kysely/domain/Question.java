@@ -48,7 +48,7 @@ public class Question {
 	@ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
         name = "QuestionOption", 
-        joinColumns = { @JoinColumn(name = "questionTypeId") }, 
+        joinColumns = { @JoinColumn(name = "questionId") }, 
         inverseJoinColumns = { @JoinColumn(name = "optionId") }
     )
     Set<Option> options = new HashSet<>();
