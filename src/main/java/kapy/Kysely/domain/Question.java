@@ -40,7 +40,8 @@ public class Question {
 	private QuestionType questionType;
 	
 	// Managed reference = Näyttää vastaukset, kun listataan kysymykset
-	@JsonBackReference
+	@JsonIgnore
+	//@JsonBackReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
 	
