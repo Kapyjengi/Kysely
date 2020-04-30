@@ -70,22 +70,22 @@ public class KyselyApplication {
 			questionRepository.save(question6);
 
 			log.info("test answers for survey1");
-			Answer answer1 = new Answer("Asia1, asia2 ja asia3. Juu.",question1 );
+			Answer answer1 = new Answer("Oppimistavoitteeni kurssille oli oppia työskentelemään ryhmässä ja toteuttamaan toimivan vaatimukset täyttävän sovelluksen. Saavutimme kurssille annetut tavoitteet.",question1 );
 			answerRepository.save(answer1);
 
-			Answer answer2 = new Answer("Asiat aa, bee ja cee.",question2 );
+			Answer answer2 = new Answer("Osaan paremmin hahmottaa, kuinka ohjelmistoprojektin työstäminen ryhmässä toimii.",question2 );
 			answerRepository.save(answer2);
 
 			Answer answer3 = new Answer("Ryhmätyöskentely toimi hyvin tuttujen opiskelelukaveiden kanssa.",question3);
 			answerRepository.save(answer3);
 
-			Answer answer4 = new Answer("Asian, toisen ja kolmannen.",question4);
+			Answer answer4 = new Answer("Olisin joissakin tilanteissa voinut aktiivisemmin tuoda mielipiteeni esiin.",question4);
 			answerRepository.save(answer4);
 
-			Answer answer5 = new Answer("Tämä, tuo ja se.",question5);
+			Answer answer5 = new Answer("Opintojaksolla opin uusia koodaamistaitoja sekä sain hieman kokemusta, kuinka ohjelmiston kehitys ryhmässä toimii.",question5);
 			answerRepository.save(answer5);
 
-			Answer answer6 = new Answer("Sillain, tälläin ja tollain.",question6);
+			Answer answer6 = new Answer("Ei tule mitään mieleen.",question6);
 			answerRepository.save(answer6);
 
 			////////////////////
@@ -116,22 +116,22 @@ public class KyselyApplication {
 			questionRepository.save(question13);
 
 			log.info("test answers for survey1");
-			Answer answer8 = new Answer("Tää, toi ja se.",question8);
+			Answer answer8 = new Answer("Tärkein oppimistavoite kurssille oli oppia, kuinka tehdä toimiva backend nettisivulle. Kyllä, ymmärrän nyt mitä backendiltä halutaan ja mitä se tekee.",question8);
 			answerRepository.save(answer8);
 
-			Answer answer9 = new Answer("Asia1 ja asia2.",question9 );
+			Answer answer9 = new Answer("Opin tekemään backendin verkkosivulle.",question9 );
 			answerRepository.save(answer9);
 
 			Answer answer10 = new Answer("Kurssilla ei toteutettu ryhmätyötä.",question10);
 			answerRepository.save(answer10);
 
-			Answer answer11 = new Answer("Tän ja ton.",question11);
+			Answer answer11 = new Answer("Eipä oikeastaan mitään.",question11);
 			answerRepository.save(answer11);
 
-			Answer answer12 = new Answer("Joku ja joku.",question12);
+			Answer answer12 = new Answer("Opintojaksossa oli hyvä, kun kurssilla toteutettiin omalle verkkosivuille yksilötyönä backend.",question12);
 			answerRepository.save(answer12);
 
-			Answer answer13 = new Answer("Tälläin ja tollain.",question13);
+			Answer answer13 = new Answer("Ei tule mitään mieleen",question13);
 			answerRepository.save(answer13);
 
 			log.info("fetch all surveys");
