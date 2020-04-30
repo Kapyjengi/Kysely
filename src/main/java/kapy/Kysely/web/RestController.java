@@ -82,8 +82,23 @@ public class RestController {
 		return (List<Answer>)answerRepository.findAll();
 	}
 	
+	// Restful yhden kysymyksen kaikki vastaukset
+	// questions/{questionId}/answers/
+	@RequestMapping(value= "questions/{questionId}/answers", method = RequestMethod.GET)
+	public @ResponseBody List<Answer>getAnswersOfQuestion(@PathVariable("questionId") Long questionId){
+		return (List<Answer>)questionRepository.findById(questionId).get().getAnswers();
+	}
 	
-	
+	// RESTful get answers only
+		@RequestMapping(value= "questions/{questionId}/answertexts", method = RequestMethod.GET)
+		public @ResponseBody List<String>getAnswerTextsOfQuestion(@PathVariable("questionId") Long questionId){
+			List<Answer> answers = questionRepository.findById(questionId).get().getAnswers();
+			List<String> answerTexts = new ArrayList<String>();
+			for(int i=0; i<answers.size(); i++){
+		        answerTexts.add(answers.get(i).getAnswerText());
+		    }  
+			return answerTexts;
+		}
 	
 	//surveys/' + props.surveyId + '/questions
 	// RESTful get all questions in survey

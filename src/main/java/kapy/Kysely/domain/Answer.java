@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Answer {
 
@@ -15,7 +17,8 @@ public class Answer {
 	private Long answerId;
 
 	private String answerText;
-
+	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "questionId")
 	private Question question;

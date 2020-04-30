@@ -75,6 +75,10 @@ public class KyselyApplication {
 
 			Answer answer2 = new Answer("Asiat aa, bee ja cee.",question2 );
 			answerRepository.save(answer2);
+			Answer answer14 = new Answer("Asiat YKKÖNE, bee ja cee.",question2 );
+			answerRepository.save(answer14);
+			Answer answer15 = new Answer("Asiat KAKKONE, bee ja cee.",question2 );
+			answerRepository.save(answer15);
 
 			Answer answer3 = new Answer("Ryhmätyöskentely toimi hyvin tuttujen opiskelelukaveiden kanssa.",question3);
 			answerRepository.save(answer3);
