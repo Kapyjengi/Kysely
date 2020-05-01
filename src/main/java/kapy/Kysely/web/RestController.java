@@ -54,7 +54,7 @@ public class RestController {
 	}
 		
 	//REST homepage
-	@RequestMapping(value = "/resthome", method = RequestMethod.GET)
+	@RequestMapping(value = {"/resthome", "/", "/api"}, method = RequestMethod.GET)
 	public String restHome() {
 		return "resthome";
 	}
