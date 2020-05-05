@@ -59,17 +59,7 @@ public class RestController {
 		return "resthome";
 	}
 	
-	// RESTful service for adding an answer
-	// 
-	/*1. endpoint on /submitanswer
-	 * 2. Saadaan vastausolio JSONIna
-	 * 3. LIitetään vastausolio kysymysID:n perusteella kysymysolioon
-	 * 		Answer answer = new Answer();
-	 * answer.setAnswerText();
-		Question question = answer.getQuestion();
-		question.addAnswer(answer);
-	 */
-	
+	// Save an answer
 	@PostMapping("/submitanswer")
 	public @ResponseBody Answer saveAnswer(@RequestBody Answer answer) {
 		answerRepository.save(answer);
