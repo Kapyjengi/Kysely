@@ -33,14 +33,15 @@ public class SurveyController {
 	@Autowired
 	AnswerRepository answerRepository;
 
+	// Index page: show list of surveys
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
-	public String Index(Model model) {
+	public String getListOfSurveysForIndexPage(Model model) {
 		model.addAttribute("surveys", surveyRepository.findAll());
 		return "index";
 	}
-
+	// 
 	@RequestMapping(value = "/questionlist", method = RequestMethod.GET)
-	public String ShowQuestionList(Model model, Question questions,
+	public String getQuestionList(Model model, Question questions,
 			@RequestParam(name = "survey", required = false) Long surveyId, Answer answer) {
 
 		if (surveyId != null) {
@@ -58,7 +59,7 @@ public class SurveyController {
 
 	// Create new survey, send to template. GET
 	@RequestMapping(value = "/addsurvey", method = RequestMethod.GET)
-	public String getNewSurvey(Model model) {
+	public String createNewSurvey(Model model) {
 		model.addAttribute("survey", new Survey());
 		return "addSurvey";
 	}
@@ -74,7 +75,7 @@ public class SurveyController {
 	// Create new question, send to template along with current survey. GET
 	// and current questions as list
 	@RequestMapping(value = "surveys/{surveyId}/addquestion", method = RequestMethod.GET)
-	public String getQuestion(@PathVariable("surveyId") Long surveyId, Model model) {
+	public String createQuestion(@PathVariable("surveyId") Long surveyId, Model model) {
 		Question question = new Question(); 
 
 

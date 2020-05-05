@@ -34,21 +34,21 @@ public class RestController {
 	@Autowired
 	AnswerRepository answerRepository;
 	
-	//Restful haetaan kysely id-numeron mukaan
+	//Find survey by ID
 	@RequestMapping(value = "/surveys/{surveyId}", method = RequestMethod.GET)
-	public @ResponseBody Optional<Survey> findSurveyRest(@PathVariable("surveyId") Long surveyId){
+	public @ResponseBody Optional<Survey> findSurveyById(@PathVariable("surveyId") Long surveyId){
 		return surveyRepository.findById(surveyId);
 	}
 	
-	//Restful haetaan kaikkien kyselyiden haku
+	//Get all surveys as list
 	@RequestMapping(value = "/surveys", method = RequestMethod.GET)
-	public @ResponseBody List<Survey>surveyListRest(){
+	public @ResponseBody List<Survey>getSurveyList(){
 		return (List<Survey>)surveyRepository.findAll();
 	}
 	
-	//REST-metodi kyselyn lisäämiseen
+	//Save survey
 	@PostMapping("/surveys")
-	public @ResponseBody Survey addNewSurvey(@RequestBody Survey survey) {
+	public @ResponseBody Survey saveSurvey(@RequestBody Survey survey) {
 		surveyRepository.save(survey);
 		return survey;
 	}
@@ -76,20 +76,20 @@ public class RestController {
 		return answer;
 	}
 	
-	//Restful kaikki vastaukset
+	//Get list of all Questions
 	@RequestMapping(value = "/answers", method = RequestMethod.GET)
-	public @ResponseBody List<Answer>giefAnswersRest(){
+	public @ResponseBody List<Answer>getAllAnswers(){
 		return (List<Answer>)answerRepository.findAll();
 	}
 	
-	// Restful yhden kysymyksen kaikki vastaukset
+	// Get all answers to specified quuestion
 	// questions/{questionId}/answers/
 	@RequestMapping(value= "questions/{questionId}/answers", method = RequestMethod.GET)
 	public @ResponseBody List<Answer>getAnswersOfQuestion(@PathVariable("questionId") Long questionId){
 		return (List<Answer>)questionRepository.findById(questionId).get().getAnswers();
 	}
 	
-	// RESTful get answers only
+	// Get all text-field of all answers for a specified question
 		@RequestMapping(value= "questions/{questionId}/answertexts", method = RequestMethod.GET)
 		public @ResponseBody List<String>getAnswerTextsOfQuestion(@PathVariable("questionId") Long questionId){
 			List<Answer> answers = questionRepository.findById(questionId).get().getAnswers();
@@ -100,16 +100,15 @@ public class RestController {
 			return answerTexts;
 		}
 	
-	//surveys/' + props.surveyId + '/questions
-	// RESTful get all questions in survey
+	// Get all questions in a specified survey
 	@RequestMapping(value = "/surveys/{surveyId}/questions", method = RequestMethod.GET)
-	public @ResponseBody List<Question>getQuestionsOfSurveyEKA(@PathVariable("surveyId") Long surveyId){
+	public @ResponseBody List<Question>getQuestionsOfSurvey(@PathVariable("surveyId") Long surveyId){
 		return (List<Question>)surveyRepository.findById(surveyId).get().getQuestions();
 	}
 	
-	// RESTful get question texts only
+	// Get questionText of all questions of a specific survey
 	@RequestMapping(value = "/surveys/{surveyId}/questiontexts", method = RequestMethod.GET)
-	public @ResponseBody List<String>getQuestionsOfSurvey(@PathVariable("surveyId") Long surveyId){
+	public @ResponseBody List<String>getQuestionsOfSurveyAsText(@PathVariable("surveyId") Long surveyId){
 		List<Question> questions = surveyRepository.findById(surveyId).get().getQuestions();
 		List<String> questionTexts = new ArrayList<String>();
 		for(int i=0; i<questions.size(); i++){
@@ -118,6 +117,5 @@ public class RestController {
 		return questionTexts;
 	}
 	
-	// RESTful service to save answers
 
 }
