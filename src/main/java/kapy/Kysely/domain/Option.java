@@ -37,9 +37,9 @@ public class Option {
 	@JoinColumn(name = "answerId")
 	private Answer answer;
 	*/
-	
-	@ManyToMany(mappedBy = "options")
-    private Set<Answer> answers = new HashSet<>();
+	@JsonBackReference
+	@OneToMany(mappedBy = "option")
+	private List<AnswerOption> answerOptions;
 	
 	public String getOptionText() {
 		return optionText;
@@ -75,11 +75,12 @@ public class Option {
 		this.question = question;
 	}
 	
-	public Set<Answer> getAnswers() {
-		return answers;
+	
+	public List<AnswerOption> getAnswerOptions() {
+		return answerOptions;
 	}
-	public void setAnswers(Set<Answer> answers) {
-		this.answers = answers;
+	public void setAnswerOptions(List<AnswerOption> answerOptions) {
+		this.answerOptions = answerOptions;
 	}
 	// constructor
 	public Option(String optionText, Question question) {

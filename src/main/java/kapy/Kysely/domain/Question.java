@@ -27,16 +27,16 @@ public class Question {
 	private Long questionId;
 
 	private String questionText;
+	
+	@ManyToOne
+	@JsonBackReference
+	@JoinColumn(name = "questionTypeId")
+	private QuestionType questionType;
 
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "surveyId")
 	private Survey survey;
-
-	@ManyToOne
-	@JsonBackReference
-	@JoinColumn(name = "questionTypeId")
-	private QuestionType questionType;
 	
 	// Managed reference = Näyttää vastaukset, kun listataan kysymykset
 	@JsonManagedReference

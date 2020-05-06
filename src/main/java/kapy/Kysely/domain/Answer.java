@@ -38,14 +38,10 @@ public class Answer {
 	private List<Option> options;
 	*/
 	
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "Answer_Option", 
-        joinColumns = { @JoinColumn(name = "optionId") }, 
-        inverseJoinColumns = { @JoinColumn(name = "answerId") }
-    )
-    Set<Option> options = new HashSet<>();
-    
+	@JsonManagedReference
+	@OneToMany(mappedBy = "answer")
+	private List<AnswerOption> answerOptions;
+	
 	public Long getAnswerId() {
 		return answerId;
 	}
@@ -94,17 +90,13 @@ public class Answer {
 	public Answer(Answer answerText) {
 		super();
 	}
-
-	public Set<Option> getOptions() {
-		return options;
+	
+	public List<AnswerOption> getAnswerOptions() {
+		return answerOptions;
 	}
 
-	public void setOptions(Set<Option> options) {
-		this.options = options;
-	}
-
-	public void addOption(Option option) {
-		this.options.add(option);
+	public void setAnswerOptions(List<AnswerOption> answerOptions) {
+		this.answerOptions = answerOptions;
 	}
 
 	public Answer() {

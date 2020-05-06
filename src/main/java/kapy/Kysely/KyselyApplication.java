@@ -8,6 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import kapy.Kysely.domain.Answer;
+import kapy.Kysely.domain.AnswerOption;
+import kapy.Kysely.domain.AnswerOptionRepository;
 import kapy.Kysely.domain.AnswerRepository;
 import kapy.Kysely.domain.Question;
 import kapy.Kysely.domain.QuestionRepository;
@@ -29,7 +31,8 @@ public class KyselyApplication {
 	//testidatan luonti H2-testitietokantaan
 	@Bean
 	public CommandLineRunner surveyDemo(QuestionRepository questionRepository, SurveyRepository surveyRepository, 
-			AnswerRepository answerRepository, QuestionTypeRepository questionTypeRepository, OptionRepository optionRepository) {
+			AnswerRepository answerRepository, QuestionTypeRepository questionTypeRepository, OptionRepository optionRepository,
+			AnswerOptionRepository answerOptionRepository) {
 		return (args) -> {
 			log.info("save surveys and questions");
 			
@@ -280,7 +283,7 @@ public class KyselyApplication {
 			
 			
 			// question 14
-			Question question14 = new Question("Oliko kivaa?", survey2, type2);
+			Question question14 = new Question("Suosittelisin kurssia opiskelijatovereilleni", survey2, type2);
 			questionRepository.save(question14);
 			
 			Answer answer51 = new Answer(question14);
@@ -292,10 +295,38 @@ public class KyselyApplication {
 			Option option2 = new Option("Kyllä", question14);
 			optionRepository.save(option2);
 			answerRepository.save(answer51);
-			answer51.addOption(option2);
-			answer51.addOption(option1);
 			
-
+			AnswerOption aopt1 = new AnswerOption(answer51, option1);
+			answerOptionRepository.save(aopt1);
+			
+			//question 15
+			Question question15 = new Question("Kurssi oli mielestäni", survey2, type3);
+			questionRepository.save(question15);
+			//options
+			Option option3 = new Option("Haastava", question15);
+			optionRepository.save(option3);
+			Option option4 = new Option("Mukaansatempaava", question15);
+			optionRepository.save(option4);
+			Option option5 = new Option("Mielekäs", question15);
+			optionRepository.save(option5);
+			Option option6 = new Option("Työllistymistäni edistävä", question15);
+			optionRepository.save(option6);
+			//Two answers with different answeroption sets
+			Answer answer52 = new Answer(question15);
+			answerRepository.save(answer52);
+			AnswerOption aopt2 = new AnswerOption(answer52, option3);
+			answerOptionRepository.save(aopt2);
+			AnswerOption aopt3 = new AnswerOption(answer52, option6);
+			answerOptionRepository.save(aopt3);
+			Answer answer53 = new Answer(question15);
+			answerRepository.save(answer53);
+			AnswerOption aopt4 = new AnswerOption(answer53, option3);
+			answerOptionRepository.save(aopt4);
+			AnswerOption aopt5 = new AnswerOption(answer53, option4);
+			answerOptionRepository.save(aopt5);
+			AnswerOption aopt6 = new AnswerOption(answer52, option5);
+			answerOptionRepository.save(aopt6);
+			
 			log.info("fetch all surveys");
 			for (Survey survey : surveyRepository.findAll()) {
 				log.info(survey.toString());
