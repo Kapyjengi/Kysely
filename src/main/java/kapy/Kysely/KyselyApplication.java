@@ -15,6 +15,9 @@ import kapy.Kysely.domain.QuestionType;
 import kapy.Kysely.domain.QuestionTypeRepository;
 import kapy.Kysely.domain.Survey;
 import kapy.Kysely.domain.SurveyRepository;
+import kapy.Kysely.domain.Option;
+import kapy.Kysely.domain.OptionRepository;
+
 
 @SpringBootApplication
 public class KyselyApplication {
@@ -26,7 +29,7 @@ public class KyselyApplication {
 	//testidatan luonti H2-testitietokantaan
 	@Bean
 	public CommandLineRunner surveyDemo(QuestionRepository questionRepository, SurveyRepository surveyRepository, 
-			AnswerRepository answerRepository, QuestionTypeRepository questionTypeRepository) {
+			AnswerRepository answerRepository, QuestionTypeRepository questionTypeRepository, OptionRepository optionRepository) {
 		return (args) -> {
 			log.info("save surveys and questions");
 			
@@ -274,6 +277,24 @@ public class KyselyApplication {
 
 			Answer answer50 = new Answer("Vähän lisää vinkkejä ja vippaskonsteja kiitos.",question13);
 			answerRepository.save(answer50);
+			
+			
+			// question 14
+			Question question14 = new Question("Oliko kivaa?", survey2, type2);
+			questionRepository.save(question14);
+			
+			Answer answer51 = new Answer(question14);
+			
+			
+			// options
+			Option option1 = new Option("Ei", question14);
+			optionRepository.save(option1);
+			Option option2 = new Option("Kyllä", question14);
+			optionRepository.save(option2);
+			answerRepository.save(answer51);
+			answer51.addOption(option2);
+			answer51.addOption(option1);
+			
 
 			log.info("fetch all surveys");
 			for (Survey survey : surveyRepository.findAll()) {

@@ -33,7 +33,6 @@ public class Question {
 	@JoinColumn(name = "surveyId")
 	private Survey survey;
 
-	
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "questionTypeId")
@@ -41,19 +40,13 @@ public class Question {
 	
 	// Managed reference = Näyttää vastaukset, kun listataan kysymykset
 	@JsonManagedReference
-	//@JsonBackReference
-	// @JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
 	
-	@JsonIgnore
-	@ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-        name = "QuestionOption", 
-        joinColumns = { @JoinColumn(name = "questionId") }, 
-        inverseJoinColumns = { @JoinColumn(name = "optionId") }
-    )
-    Set<Option> options = new HashSet<>();
+	// List of options
+	@JsonManagedReference
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	private List<Option> options;
 
 	public List<Answer> getAnswers() {
 		return answers;
@@ -95,6 +88,12 @@ public class Question {
 		this.survey = survey;
 		this.questionType = questionType;
 	}
+	
+	public Question(Survey survey, QuestionType questionType) {
+		super();
+		this.survey = survey;
+		this.questionType = questionType;
+	}
 
 	public Question() {
 		super();
@@ -126,13 +125,14 @@ public class Question {
 		this.questionType = questiontype;
 	}
 
-	public Set<Option> getOptions() {
+	public List<Option> getOptions() {
 		return options;
 	}
 
-	public void setOptions(Set<Option> options) {
+	public void setOptions(List<Option> options) {
 		this.options = options;
 	}
+	
 
 	@Override
 	public String toString() {
