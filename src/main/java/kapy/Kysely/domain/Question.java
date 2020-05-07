@@ -1,8 +1,6 @@
 package kapy.Kysely.domain;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,8 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -27,7 +23,7 @@ public class Question {
 	private Long questionId;
 
 	private String questionText;
-	
+
 	@ManyToOne
 	@JsonBackReference
 	@JoinColumn(name = "questionTypeId")
@@ -37,12 +33,12 @@ public class Question {
 	@JsonIgnore
 	@JoinColumn(name = "surveyId")
 	private Survey survey;
-	
+
 	// Managed reference = Näyttää vastaukset, kun listataan kysymykset
 	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
-	
+
 	// List of options
 	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
@@ -88,7 +84,7 @@ public class Question {
 		this.survey = survey;
 		this.questionType = questionType;
 	}
-	
+
 	public Question(Survey survey, QuestionType questionType) {
 		super();
 		this.survey = survey;
@@ -115,7 +111,7 @@ public class Question {
 	public void setQuestionText(String questionText) {
 		this.questionText = questionText;
 	}
-	
+
 
 	public QuestionType getQuestiontype() {
 		return questionType;
@@ -132,7 +128,7 @@ public class Question {
 	public void setOptions(List<Option> options) {
 		this.options = options;
 	}
-	
+
 
 	@Override
 	public String toString() {
