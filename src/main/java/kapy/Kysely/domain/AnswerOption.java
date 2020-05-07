@@ -19,14 +19,13 @@ public class AnswerOption {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long answerOptionId;
 	
-	@JsonBackReference
+	@JsonBackReference(value="answer-answerOption")
 	@ManyToOne
 	@JoinColumn(name ="answerId")
 	private Answer answer;
 	
-	@JsonManagedReference
+	@JsonBackReference
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name ="optionId")
 	private Option option;
 	

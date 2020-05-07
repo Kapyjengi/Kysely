@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Option {
@@ -23,7 +24,7 @@ public class Option {
 	private Long optionId;
 	
 	@ManyToOne
-	@JsonIgnore
+	@JsonBackReference(value="question-options")
 	@JoinColumn(name = "questionId")
 	private Question question;
 	/*
@@ -32,8 +33,8 @@ public class Option {
 	@JoinColumn(name = "answerId")
 	private Answer answer;
 	*/
-	@JsonBackReference
-	//@JsonIgnore
+	// @JsonBackRerence
+	@JsonManagedReference
 	@OneToMany(mappedBy = "option")
 	private List<AnswerOption> answerOptions;
 	

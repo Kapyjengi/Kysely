@@ -24,14 +24,14 @@ public class Answer {
 
 	private String answerText;
 	
-	@JsonBackReference
+	@JsonBackReference(value="question-answer")
 	@ManyToOne
 	@JoinColumn(name = "questionId")
 	private Question question;
 	
 	
 	@OneToMany(mappedBy = "answer", fetch = FetchType.LAZY)
-	@JsonManagedReference
+	@JsonManagedReference(value="answer-answerOption")
 	@JsonIgnore
 	private List<AnswerOption> answerOptions;
 	
