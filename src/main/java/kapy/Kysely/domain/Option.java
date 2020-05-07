@@ -33,6 +33,7 @@ public class Option {
 	private Answer answer;
 	*/
 	@JsonBackReference
+	//@JsonIgnore
 	@OneToMany(mappedBy = "option")
 	private List<AnswerOption> answerOptions;
 	

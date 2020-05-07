@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -28,8 +29,10 @@ public class Answer {
 	@JoinColumn(name = "questionId")
 	private Question question;
 	
-	@JsonManagedReference
+	
 	@OneToMany(mappedBy = "answer", fetch = FetchType.LAZY)
+	@JsonManagedReference
+	@JsonIgnore
 	private List<AnswerOption> answerOptions;
 	
 	public Long getAnswerId() {
