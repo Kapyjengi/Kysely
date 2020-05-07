@@ -17,6 +17,7 @@ import kapy.Kysely.domain.Answer;
 import kapy.Kysely.domain.AnswerRepository;
 import kapy.Kysely.domain.Question;
 import kapy.Kysely.domain.QuestionRepository;
+import kapy.Kysely.domain.QuestionTypeRepository;
 import kapy.Kysely.domain.Survey;
 import kapy.Kysely.domain.SurveyRepository;
 
@@ -32,6 +33,9 @@ public class SurveyController {
 
 	@Autowired
 	AnswerRepository answerRepository;
+	
+	@Autowired
+	QuestionTypeRepository questionTypeRepository;
 
 	// Index page: show list of surveys
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -90,6 +94,9 @@ public class SurveyController {
 		model.addAttribute("survey", survey);
 		model.addAttribute("question", question);
 		model.addAttribute("surveysname", survey.get().getSurveyName());
+		
+		// Send questionTypes to form
+		model.addAttribute("questiontypelist", questionTypeRepository.findAll());
 		return "addQuestion";
 	}
 

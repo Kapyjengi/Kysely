@@ -75,10 +75,6 @@ public class Answer {
 		this.question = question;
 	}
 	
-
-	public Answer(Answer answerText) {
-		super();
-	}
 	
 	public List<AnswerOption> getAnswerOptions() {
 		return answerOptions;
