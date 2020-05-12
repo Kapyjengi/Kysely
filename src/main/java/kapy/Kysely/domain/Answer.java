@@ -31,7 +31,7 @@ public class Answer {
 	
 	
 	@OneToMany(mappedBy = "answer", fetch = FetchType.LAZY)
-	@JsonBackReference(value="answer-answerOption")
+	@JsonManagedReference(value="answer-answerOption")
 	@JsonIgnore
 	private List<AnswerOption> answerOptions;
 	
