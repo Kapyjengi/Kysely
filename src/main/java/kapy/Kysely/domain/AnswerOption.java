@@ -24,7 +24,7 @@ public class AnswerOption {
 	@JoinColumn(name ="answerId")
 	private Answer answer;
 	
-	@JsonManagedReference(value="option-answerOption")
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name ="optionId")
 	private Option option;

@@ -27,8 +27,14 @@ public class Option {
 	@JsonBackReference(value="question-options")
 	@JoinColumn(name = "questionId")
 	private Question question;
-
-	@JsonBackReference(value="option-answerOption")
+	/*
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "answerId")
+	private Answer answer;
+	*/
+	// @JsonBackRerence
+	@JsonManagedReference
 	@OneToMany(mappedBy = "option")
 	private List<AnswerOption> answerOptions;
 	
@@ -81,6 +87,7 @@ public class Option {
 	
 	public Option() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 	
 	
