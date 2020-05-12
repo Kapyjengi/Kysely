@@ -25,7 +25,7 @@ public class Question {
 	private String questionText;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonManagedReference
 	@JoinColumn(name = "questionTypeId")
 	private QuestionType questionType;
 
