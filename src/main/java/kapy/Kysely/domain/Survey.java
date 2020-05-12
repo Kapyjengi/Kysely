@@ -16,6 +16,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 public class Survey {
 	
 	private String surveyName;
+	
 	private String surveyDescription;
 	
 	@Id
@@ -25,7 +26,28 @@ public class Survey {
 	@JsonManagedReference
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
 	private List<Question> questions;
+	
+	// Constructors
+	
+	public Survey(String surveyName, String surveyDescription, Long surveyId) {
+		super();
+		this.surveyName = surveyName;
+		this.surveyDescription = surveyDescription;
+		this.surveyId = surveyId;
+	}
 
+	public Survey() {
+		super();
+	}
+	
+	public Survey(String surveyName, String surveyDescription) {
+		super();
+		this.surveyName = surveyName;
+		this.surveyDescription = surveyDescription;
+	}
+	
+	// Getters and setters
+	
 	public List<Question> getQuestions() {
 		return questions;
 	}
@@ -62,27 +84,6 @@ public class Survey {
 
 	public void setSurveyId(Long surveyId) {
 		this.surveyId = surveyId;
-	}
-
-	public Survey(String surveyName, String surveyDescription, Long surveyId) {
-		super();
-		this.surveyName = surveyName;
-		this.surveyDescription = surveyDescription;
-		this.surveyId = surveyId;
-	}
-
-	public Survey() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	public Survey(String surveyName, String surveyDescription) {
-		super();
-		this.surveyName = surveyName;
-		this.surveyDescription = surveyDescription;
-	}
-	
-	
-	
+	}	
 
 }

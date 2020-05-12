@@ -26,24 +26,28 @@ public class Option {
 	private Long optionId;
 	
 	@ManyToOne
-	//@JsonIgnore
 	@JsonBackReference(value="question-options")
 	@JoinColumn(name = "questionId")
 	private Question question;
-	/*
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name = "answerId")
-	private Answer answer;
-	*/
-	
-	//@JsonBackReference(value="option-answerOption")
+
 	@JsonManagedReference(value="option-answerOption")
-	//@JsonIgnore
 	@JsonIgnoreProperties("options")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "option")
 	private List<AnswerOption> answerOptions;
 	
+	
+	// Constructors
+	public Option(String optionText, Question question) {
+		this.optionText = optionText;
+		this.question = question;
+	}
+	
+	public Option() {
+		super();
+	}
+	
+	
+	// Getters and setters
 	public String getOptionText() {
 		return optionText;
 	}
@@ -84,18 +88,6 @@ public class Option {
 	}
 	public void setAnswerOptions(List<AnswerOption> answerOptions) {
 		this.answerOptions = answerOptions;
-	}
-	// constructor
-	public Option(String optionText, Question question) {
-		this.optionText = optionText;
-		this.question = question;
-	}
-	
-	public Option() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
+	}	
 
 }

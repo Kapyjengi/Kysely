@@ -25,16 +25,13 @@ public class AnswerOption {
 	@JoinColumn(name ="answerId")
 	private Answer answer;
 	
-	//@JsonManagedReference(value="option-answerOption")
 	@JsonBackReference(value="option-answerOption")
-	//@JsonIgnore
 	@JsonIgnoreProperties("answerOptions")
 	@ManyToOne
 	@JoinColumn(name ="optionId")
 	private Option option;
 	
-	
-
+	// Constructors
 	public AnswerOption() {
 		super();
 	}
@@ -43,7 +40,8 @@ public class AnswerOption {
 		this.answer = answer;
 		this.option = option;
 	}
-
+	
+	// Getters and setters
 	public Long getAnswerOptionId() {
 		return answerOptionId;
 	}

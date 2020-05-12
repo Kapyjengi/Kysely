@@ -27,6 +27,20 @@ public class QuestionType {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questionType")
 	private List<Question> questions;
 	
+	
+	// Constructors
+	
+	public QuestionType() {
+		super();
+	}
+
+	public QuestionType(String typeName) {
+		this.typeName = typeName;
+	}
+	
+	
+	// Getters and setters
+	
 	public List<Question> getQuestions() {
 		return questions;
 	}
@@ -55,16 +69,4 @@ public class QuestionType {
 	public String toString() {
 		return "QuestionType [typeName=" + typeName + ", questionId=" + questionTypeId+"]";
 	}
-
-	public QuestionType() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public QuestionType(String typeName) {
-		this.typeName = typeName;
-	}
-	
-	
-
 }

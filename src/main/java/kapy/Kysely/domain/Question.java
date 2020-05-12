@@ -46,6 +46,37 @@ public class Question {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Option> options;
 
+	// Constructors
+
+	// default constructor
+	public Question(String questionText, Survey survey) {
+		super();
+		this.questionText = questionText;
+		this.survey = survey;
+	}
+	
+	// constructor with type included
+	public Question(String questionText, Survey survey, QuestionType questionType) {
+		super();
+		this.questionText = questionText;
+		this.survey = survey;
+		this.questionType = questionType;
+	}
+
+	public Question(Survey survey, QuestionType questionType) {
+		super();
+		this.survey = survey;
+		this.questionType = questionType;
+	}
+
+	public Question() {
+		super();
+	}
+
+	
+	
+	// Getters and setters
+	
 	public List<Answer> getAnswers() {
 		return answers;
 	}
@@ -71,31 +102,6 @@ public class Question {
 	public Question(String questionText) {
 		super();
 		this.questionText = questionText;
-	}
-
-	// default constructor
-	public Question(String questionText, Survey survey) {
-		super();
-		this.questionText = questionText;
-		this.survey = survey;
-	}
-	// constructor with type included
-	public Question(String questionText, Survey survey, QuestionType questionType) {
-		super();
-		this.questionText = questionText;
-		this.survey = survey;
-		this.questionType = questionType;
-	}
-
-	public Question(Survey survey, QuestionType questionType) {
-		super();
-		this.survey = survey;
-		this.questionType = questionType;
-	}
-
-	public Question() {
-		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public Long getQuestionId() {

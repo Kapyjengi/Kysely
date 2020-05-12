@@ -24,18 +24,46 @@ public class Answer {
 	private Long answerId;
 
 	private String answerText;
-	
+
 	@JsonBackReference(value="question-answer")
 	@ManyToOne
 	@JoinColumn(name = "questionId")
-	//@JsonIgnore
 	private Question question;
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "answer", fetch = FetchType.LAZY)
 	@JsonManagedReference(value="answer-answerOption")
 	@JsonIgnore
 	private List<AnswerOption> answerOptions;
+
+
+
+	// Constructors
+	public Answer() {
+		super();
+	}
 	
+	// default constructor without ID
+	public Answer(Question question, String answerText) {
+		super();
+		this.question = question;
+		this.answerText = answerText;
+	}
+
+	// other way around
+	public Answer(String answerText, Question question) {
+		super();
+		this.question = question;
+		this.answerText = answerText;
+	}
+
+	// constructor with only question
+	public Answer(Question question) {
+		super();
+		this.question = question;
+	}
+
+	
+	// Getters and setters
 	public Long getAnswerId() {
 		return answerId;
 	}
@@ -60,37 +88,14 @@ public class Answer {
 		this.answerText = answerText;
 	}
 
-	// default constructor without ID
-	public Answer(Question question, String answerText) {
-		super();
-		this.question = question;
-		this.answerText = answerText;
-	}
 
-	// other way around
-	public Answer(String answerText, Question question) {
-		super();
-		this.question = question;
-		this.answerText = answerText;
-	}
-	
-	// constructor with only question
-	public Answer(Question question) {
-		super();
-		this.question = question;
-	}
-	
-	
+
 	public List<AnswerOption> getAnswerOptions() {
 		return answerOptions;
 	}
 
 	public void setAnswerOptions(List<AnswerOption> answerOptions) {
 		this.answerOptions = answerOptions;
-	}
-
-	public Answer() {
-		super();
 	}
 
 	@Override
