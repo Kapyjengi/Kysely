@@ -25,7 +25,7 @@ public class Question {
 	private String questionText;
 
 	@ManyToOne
-	@JsonBackReference
+	@JsonManagedReference
 	@JoinColumn(name = "questionTypeId")
 	private QuestionType questionType;
 
@@ -114,12 +114,12 @@ public class Question {
 	}
 
 
-	public QuestionType getQuestiontype() {
+	public QuestionType getQuestionType() {
 		return questionType;
 	}
 
-	public void setQuestiontype(QuestionType questiontype) {
-		this.questionType = questiontype;
+	public void setQuestionType(QuestionType questionType) {
+		this.questionType = questionType;
 	}
 
 	public List<Option> getOptions() {

@@ -17,6 +17,7 @@ import kapy.Kysely.domain.Answer;
 import kapy.Kysely.domain.AnswerRepository;
 import kapy.Kysely.domain.Question;
 import kapy.Kysely.domain.QuestionRepository;
+import kapy.Kysely.domain.QuestionType;
 import kapy.Kysely.domain.QuestionTypeRepository;
 import kapy.Kysely.domain.Survey;
 import kapy.Kysely.domain.SurveyRepository;
@@ -102,10 +103,13 @@ public class SurveyController {
 
 	// Receive question from template, save it. POST
 	// Direct to add another question.
+	
 	@RequestMapping(value = "/savequestion", method = RequestMethod.POST)
-	public String saveQuestion(@ModelAttribute Question question) {
+	public String saveQuestion(@ModelAttribute Question question,QuestionType questiontype) {
+		Long surveyId = question.getSurvey().getSurveyId(); 
 		questionRepository.save(question);
-		Long surveyId = question.getSurvey().getSurveyId(); // get surveyID of question to get the right survey to add questions to
+		// get surveyID of question to get the right survey to add questions to
+		
 		return "redirect:surveys/"+surveyId+"/addquestion"; // direct back to question template 
 	}
 

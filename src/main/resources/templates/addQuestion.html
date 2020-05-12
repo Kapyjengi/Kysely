@@ -16,7 +16,7 @@
 		method="post">
 	<label for="questiontypelist">Position</label>
 			 <select id="questiontypelist" th:field="*{questionType}" class="form-control">
-       			<option th:each="questionType: ${questionTypeList}" 
+       			<option th:each="questionType: ${questiontypelist}" 
        			th:value="${questionType.questionTypeId}"
        			 th:text="${questionType.typeName}"></option>
     		</select>
