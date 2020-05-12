@@ -35,13 +35,14 @@ public class Question {
 	private Survey survey;
 
 	// Managed reference = Näyttää vastaukset, kun listataan kysymykset
-	@JsonManagedReference(value="question-answer")
+	//@JsonManagedReference(value="question-answer")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
 
 	// List of options
 	@JsonManagedReference(value="question-options")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	@JsonIgnore
 	private List<Option> options;
 
 	public List<Answer> getAnswers() {

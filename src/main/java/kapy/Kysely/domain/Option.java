@@ -2,6 +2,7 @@ package kapy.Kysely.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -24,7 +26,8 @@ public class Option {
 	private Long optionId;
 	
 	@ManyToOne
-	@JsonBackReference(value="question-options")
+	@JsonIgnore
+	//@JsonBackReference(value="question-options")
 	@JoinColumn(name = "questionId")
 	private Question question;
 	/*
@@ -33,9 +36,12 @@ public class Option {
 	@JoinColumn(name = "answerId")
 	private Answer answer;
 	*/
-	// @JsonBackRerence
-	@JsonManagedReference
-	@OneToMany(mappedBy = "option")
+	
+	//@JsonBackReference(value="option-answerOption")
+	//@JsonManagedReference(value="option-answerOption")
+	@JsonIgnore
+	//@JsonIgnoreProperties()
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "option")
 	private List<AnswerOption> answerOptions;
 	
 	public String getOptionText() {

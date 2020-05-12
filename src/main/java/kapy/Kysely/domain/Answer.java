@@ -2,6 +2,7 @@ package kapy.Kysely.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,13 +25,14 @@ public class Answer {
 
 	private String answerText;
 	
-	@JsonBackReference(value="question-answer")
+	// @JsonBackReference(value="question-answer")
 	@ManyToOne
 	@JoinColumn(name = "questionId")
+	@JsonIgnore
 	private Question question;
 	
 	
-	@OneToMany(mappedBy = "answer", fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "answer", fetch = FetchType.LAZY)
 	@JsonManagedReference(value="answer-answerOption")
 	@JsonIgnore
 	private List<AnswerOption> answerOptions;

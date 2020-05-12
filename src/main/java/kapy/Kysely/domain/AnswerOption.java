@@ -9,6 +9,7 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
@@ -24,7 +25,10 @@ public class AnswerOption {
 	@JoinColumn(name ="answerId")
 	private Answer answer;
 	
-	@JsonBackReference
+	//@JsonManagedReference(value="option-answerOption")
+	//@JsonBackReference(value="option-answerOption")
+	//@JsonIgnore
+	@JsonIgnoreProperties("answerOptions")
 	@ManyToOne
 	@JoinColumn(name ="optionId")
 	private Option option;

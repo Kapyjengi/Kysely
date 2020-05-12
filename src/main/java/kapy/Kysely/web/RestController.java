@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -65,6 +66,18 @@ public class RestController {
 		answerRepository.save(answer);
 		return answer;
 	}
+	
+	// /submitanswerkokeilu?questionid=5
+	@PostMapping("/submitanswerkokeilu")
+	public @ResponseBody Answer saveAnswerKokeilu(@RequestBody Answer answer, 
+			@Param("questionid") Long questionId) {
+		Question question = new Question();
+		question.setQuestionId(questionId);
+		answer.setQuestion(question);
+		answerRepository.save(answer);
+		return answer;
+	}
+	
 	
 	//Get list of all Questions
 	@RequestMapping(value = "/answers", method = RequestMethod.GET)
