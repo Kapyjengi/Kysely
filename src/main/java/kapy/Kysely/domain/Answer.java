@@ -25,12 +25,11 @@ public class Answer {
 
 	private String answerText;
 	
-	// @JsonBackReference(value="question-answer")
+	@JsonBackReference(value="question-answer")
 	@ManyToOne
 	@JoinColumn(name = "questionId")
-	@JsonIgnore
+	//@JsonIgnore
 	private Question question;
-	
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "answer", fetch = FetchType.LAZY)
 	@JsonManagedReference(value="answer-answerOption")

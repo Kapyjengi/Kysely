@@ -26,7 +26,7 @@ public class AnswerOption {
 	private Answer answer;
 	
 	//@JsonManagedReference(value="option-answerOption")
-	//@JsonBackReference(value="option-answerOption")
+	@JsonBackReference(value="option-answerOption")
 	//@JsonIgnore
 	@JsonIgnoreProperties("answerOptions")
 	@ManyToOne

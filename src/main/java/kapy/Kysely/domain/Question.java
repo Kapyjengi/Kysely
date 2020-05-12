@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -25,7 +26,8 @@ public class Question {
 	private String questionText;
 
 	@ManyToOne
-	@JsonManagedReference
+	@JsonBackReference(value="question-questionType")
+	@JsonIgnoreProperties("questions")
 	@JoinColumn(name = "questionTypeId")
 	private QuestionType questionType;
 
@@ -35,14 +37,13 @@ public class Question {
 	private Survey survey;
 
 	// Managed reference = Näyttää vastaukset, kun listataan kysymykset
-	//@JsonManagedReference(value="question-answer")
+	@JsonManagedReference(value="question-answer")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	private List<Answer> answers;
 
 	// List of options
 	@JsonManagedReference(value="question-options")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
-	@JsonIgnore
 	private List<Option> options;
 
 	public List<Answer> getAnswers() {

@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class QuestionType {
@@ -19,11 +21,12 @@ public class QuestionType {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long questionTypeId;
-
-	@JsonBackReference
+	
+	
+	@JsonManagedReference(value="question-questionType")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "questionType")
 	private List<Question> questions;
-
+	
 	public List<Question> getQuestions() {
 		return questions;
 	}

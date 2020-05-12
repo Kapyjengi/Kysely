@@ -26,8 +26,8 @@ public class Option {
 	private Long optionId;
 	
 	@ManyToOne
-	@JsonIgnore
-	//@JsonBackReference(value="question-options")
+	//@JsonIgnore
+	@JsonBackReference(value="question-options")
 	@JoinColumn(name = "questionId")
 	private Question question;
 	/*
@@ -38,9 +38,9 @@ public class Option {
 	*/
 	
 	//@JsonBackReference(value="option-answerOption")
-	//@JsonManagedReference(value="option-answerOption")
-	@JsonIgnore
-	//@JsonIgnoreProperties()
+	@JsonManagedReference(value="option-answerOption")
+	//@JsonIgnore
+	@JsonIgnoreProperties("options")
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "option")
 	private List<AnswerOption> answerOptions;
 	
