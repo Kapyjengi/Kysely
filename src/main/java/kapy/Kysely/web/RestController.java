@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kapy.Kysely.domain.Answer;
+import kapy.Kysely.domain.AnswerOption;
+import kapy.Kysely.domain.AnswerOptionRepository;
 import kapy.Kysely.domain.AnswerRepository;
 import kapy.Kysely.domain.Question;
 import kapy.Kysely.domain.QuestionRepository;
@@ -34,6 +38,9 @@ public class RestController {
 	
 	@Autowired
 	AnswerRepository answerRepository;
+	
+	@Autowired
+	AnswerOptionRepository answerOptionRepository;
 	
 	//Find survey by ID
 	@RequestMapping(value = "/surveys/{surveyId}", method = RequestMethod.GET)
@@ -85,12 +92,37 @@ public class RestController {
 		return (List<Answer>)answerRepository.findAll();
 	}
 	
-	// Get all answers to specified quuestion
+	// Get all answers to specified question
 	// questions/{questionId}/answers/
 	@RequestMapping(value= "questions/{questionId}/answers", method = RequestMethod.GET)
 	public @ResponseBody List<Answer>getAnswersOfQuestion(@PathVariable("questionId") Long questionId){
 		return (List<Answer>)questionRepository.findById(questionId).get().getAnswers();
 	}
+	
+	// Get answer-options for
+	/*
+	 * Question question = questionRepository.findById(questionId).get();
+		
+		// If multiple choice question, get AnswerOptions with Option Id
+		if (question.getQuestionType().getTypeName() == "checkBox" || 
+				question.getQuestionType().getTypeName() == "radioButton") {
+		
+		}
+	 */
+	// Get information on an answer-option ID
+	@RequestMapping (value="answeroptions/{answerOptionId}", method= RequestMethod.GET, 
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String getAnswerOption(@PathVariable("answerOptionId") Long answerOptionId) {
+		JSONObject jo = new JSONObject();
+		AnswerOption answerOption = answerOptionRepository.findById(answerOptionId).get();
+		jo.put("answerId", answerOption.getAnswer().getAnswerId());
+		jo.put("optionId", answerOption.getOption().getOptionId());
+		jo.put("optionText", answerOption.getOption().getOptionText());
+		
+		System.out.println(jo);
+		return jo.toString();
+	}
+	
 	
 	// Get all text-field of all answers for a specified question
 		@RequestMapping(value= "questions/{questionId}/answertexts", method = RequestMethod.GET)

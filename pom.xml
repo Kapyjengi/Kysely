@@ -41,14 +41,9 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		
-		<!-- 
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		 -->
+
+		<!-- <dependency> <groupId>com.h2database</groupId> <artifactId>h2</artifactId> 
+			<scope>runtime</scope> </dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -61,19 +56,34 @@
 			</exclusions>
 		</dependency>
 		<!-- <dependency> <groupId>org.springframework.security</groupId> <artifactId>spring-security-test</artifactId> 
-			<scope>test</scope> </dependency> -->
-
-
-		<!-- uncomment for postgre-switch  -->
-		<dependency> 
-		<groupId>org.springframework.boot</groupId> 
-			<artifactId>spring-boot-starter-jdbc</artifactId> 
-		</dependency> 
+			<scope>test</scope> </dependency> 
+			
+			
+			
 	
-	<dependency> 
-			<groupId>org.postgresql</groupId> <artifactId>postgresql</artifactId> </dependency> 
-	</dependencies>
 
+-->
+
+		<!-- uncomment for postgre-switch -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-jdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20190722</version>
+		</dependency>
+
+
+		
+</dependencies>
 
 	<build>
 		<plugins>

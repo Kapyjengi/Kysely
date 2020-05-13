@@ -47,7 +47,7 @@ public class KyselyApplication {
 			QuestionType type3 = new QuestionType("checkBox");
 			questionTypeRepository.save(type3);
 			
-
+			
 			////////////////////
 			// TESTIKYSELY 1 //
 			//////////////////

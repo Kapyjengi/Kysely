@@ -35,8 +35,6 @@ public class Answer {
 	@JsonIgnore
 	private List<AnswerOption> answerOptions;
 
-
-
 	// Constructors
 	public Answer() {
 		super();
