@@ -99,27 +99,21 @@ public class RestController {
 		return (List<Answer>)questionRepository.findById(questionId).get().getAnswers();
 	}
 	
-	// Get answer-options for
-	/*
-	 * Question question = questionRepository.findById(questionId).get();
-		
-		// If multiple choice question, get AnswerOptions with Option Id
-		if (question.getQuestionType().getTypeName() == "checkBox" || 
-				question.getQuestionType().getTypeName() == "radioButton") {
-		
-		}
-	 */
-	// Get information on an answer-option ID
+	// Get information on an answer-option of specified ID
 	@RequestMapping (value="answeroptions/{answerOptionId}", method= RequestMethod.GET, 
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String getAnswerOption(@PathVariable("answerOptionId") Long answerOptionId) {
+		
+		// Save desired parameters into a JSONObject
 		JSONObject jo = new JSONObject();
 		AnswerOption answerOption = answerOptionRepository.findById(answerOptionId).get();
 		jo.put("answerId", answerOption.getAnswer().getAnswerId());
 		jo.put("optionId", answerOption.getOption().getOptionId());
 		jo.put("optionText", answerOption.getOption().getOptionText());
 		
-		System.out.println(jo);
+		//System.out.println(jo);
+		
+		// object must be converted back toString to be serialized into JSON
 		return jo.toString();
 	}
 	
