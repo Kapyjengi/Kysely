@@ -74,18 +74,6 @@ public class RestController {
 		return answer;
 	}
 	
-	// /submitanswerkokeilu?questionid=5
-	@PostMapping("/submitanswerkokeilu")
-	public @ResponseBody Answer saveAnswerKokeilu(@RequestBody Answer answer, 
-			@Param("questionid") Long questionId) {
-		Question question = new Question();
-		question.setQuestionId(questionId);
-		answer.setQuestion(question);
-		answerRepository.save(answer);
-		return answer;
-	}
-	
-	
 	//Get list of all Questions
 	@RequestMapping(value = "/answers", method = RequestMethod.GET)
 	public @ResponseBody List<Answer>getAllAnswers(){
@@ -117,7 +105,7 @@ public class RestController {
 		return jo.toString();
 	}
 	
-	
+	/*
 	// Get all text-field of all answers for a specified question
 		@RequestMapping(value= "questions/{questionId}/answertexts", method = RequestMethod.GET)
 		public @ResponseBody List<String>getAnswerTextsOfQuestion(@PathVariable("questionId") Long questionId){
@@ -128,7 +116,7 @@ public class RestController {
 		    }  
 			return answerTexts;
 		}
-	
+	*/
 	// Get all questions in a specified survey
 	@RequestMapping(value = "/surveys/{surveyId}/questions", method = RequestMethod.GET)
 	public @ResponseBody List<Question>getQuestionsOfSurvey(@PathVariable("surveyId") Long surveyId){
