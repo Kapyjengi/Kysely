@@ -2,35 +2,50 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <title>Add questions to survey</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 	<!-- -->
-	<h1>Add questions to your survey [[${surveysname}]]</h1>
-
+	<h3>Add questions to your survey [[${surveysname}]]</h3>
+	
 	<form action="#" th:action="@{/savequestion}" th:object=${question}
 		method="post">
-	<label for="questiontypelist">Question type: </label>
-			 <select id="questiontypelist" th:field="*{questionType}" class="btn btn-secondary dropdown-toggle"> 
-			 <!-- class="form-control"  --> 
-			 
-       			<option th:each="questionType: ${questiontypelist}" 
-       			th:value="${questionType.questionTypeId}"
-       			 th:text="${questionType.typeName}"></option>
-    		</select>
-		<p>
-			Question text:
-			<textarea type="text" th:field="${question.questionText}" />
-		</p>
-		<input type="hidden" th:field="*{survey}" class="form-control" /> <input
-			type="submit" value="Submit" class="btn btn-success"/> 
-		<input type="reset" value="Reset" class="btn btn-danger"/>
+		
+		<div class="btn btn-secondary dropdown-toggle">
+			<label for="questiontypelist">Question type: </label> 
+			<select id="questiontypelist" th:field="*{questionType}" class="form-control">
+				<option th:each="questionType: ${questiontypelist}"
+					th:value="${questionType.questionTypeId}"
+					th:text="${questionType.typeName}"></option>
+			</select>
+		</div>
+		
+		<div class="input-group">
+		<div class="input-group-prepend">
+			<span class="input-group-text">Question text:</span>
+			
+
+			<textarea class="form-control"
+			th:field="${question.questionText}"
+				id="exampleFormControlTextarea1" rows="3"
+				></textarea>
+		</div>
+		</div>
+		
+		<input type="hidden" th:field="*{survey}" class="form-control" /> 
+		<input type="submit" value="Submit" class="btn btn-success" /> 
+		<input type="reset" value="Reset" class="btn btn-danger" />
+
 	</form>
 
-	<p th:each="question : ${questionlist}"
-		th:text="${question.questionText}"></p>
+	<ul class="list-group">
+		<li class="list-group-item" th:each="question : ${questionlist}"
+			th:text="${question.questionText}"></li>
+	</ul>
 
 </body>
 </html>
