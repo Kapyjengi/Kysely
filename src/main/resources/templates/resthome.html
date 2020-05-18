@@ -15,8 +15,7 @@
 	</p>
 
 	<p>
-		<strong>JSON example</strong>
-		
+		<strong>JSON example</strong>	
 	</p>
 
 	<pre>
@@ -91,7 +90,7 @@
 	<h2>Survey by Id</h2>
 
 	<p>
-		Method: GET Endpoint:<a href="/surveys/1">/surveys/1</a>
+		Method: GET Endpoint:<a href="/surveys/4">/surveys/4</a>
 	</p>
 
 	<p>
@@ -172,7 +171,66 @@
 }
 </code>
 	</pre>
+	
+	<h2>All answers to a specified question</h2>
 
+	<p>
+		Method: GET Endpoint:<a href="/questions/6/answers">/questions/6/answers</a>
+	</p>
+
+	<p>
+		<strong>JSON example</strong>
+	</p>
+
+	<pre>
+<code>
+[
+  {
+    "answerId": 15,
+    "answerText": "Git-versiohallinnan käytön oppiminen.",
+    "answerOptions": []
+  },
+  {
+    "answerId": 16,
+    "answerText": "Frontin ja backin liittäminen toisiinsa.",
+    "answerOptions": []
+  },
+  {
+    "answerId": 17,
+    "answerText": "Opin tärkeitä yhteistyö- ja ryhmätyötaitoja.",
+    "answerOptions": []
+  },
+  {
+    "answerId": 18,
+    "answerText": "Opintojaksolla opin uusia koodaamistaitoja sekä sain hieman kokemusta, kuinka ohjelmiston kehitys ryhmässä toimii.",
+    "answerOptions": []
+  }
+]
+</code>
+	</pre>
+	
+	<h2>All question texts of a specific survey</h2>
+
+	<p>
+		Method: GET Endpoint:<a href="/surveys/4/questiontexts">/surveys/4/questiontexts</a>
+	</p>
+
+	<p>
+		<strong>JSON example</strong>
+	</p>
+
+	<pre>
+<code>
+[
+  "Mitkä olivat tärkeimmät oppimistavoitteesi aloittaessasi opintojaksoa ja saavutitko ne?",
+  "Mitkä ovat tärkeimmät opintojaksolla oppimasi taidot?",
+  "Kerro kokemuksesti ryhmätyöskentelystä.",
+  "Mitä olisit voinut opintojaksolla tehdä toisin?",
+  "Mitä hyvää opintojaksossa oli?",
+  "Miten kehittäisit opintojaksoa?"
+]
+</code>
+	</pre>
 
 </body>
 </html>
